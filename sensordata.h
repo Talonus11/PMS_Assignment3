@@ -5,6 +5,7 @@ class SensorData
 {
 public:
     SensorData();
+    SensorData(double val, double time);
     double getSensorValue();
     double getTimeStamp();
     void setTimeStamp(double inputTime);

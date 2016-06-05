@@ -41,13 +41,11 @@ double Generator::normalGenerator(double mean, double stdDev)
 
 // range generator
 
-double Generator::rangeGenerator(std::chrono::steady_clock::time_point startTime)
+double Generator::rangeGenerator(double timeDiff)
 {
     using namespace std::chrono;
     double r;
-    steady_clock::time_point endTime = steady_clock::now();
-    duration<double> time_span = duration_cast<duration<double>>(endTime - startTime);
-    double t = time_span.count();
+    double t = timeDiff;
 //    cout << "t = " << t << endl;
     double omega = 2*M_PI*0.01;
 //    cout << "omega = " << omega << endl;

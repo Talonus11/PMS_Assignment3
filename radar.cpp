@@ -1,7 +1,9 @@
 #include "radar.h"
 #include <iostream>
 #include <cstdio>
+
 #include "generator.h"
+#include "sensordata.h"
 
 Radar::Radar()
 {
@@ -179,15 +181,42 @@ int Radar::setAngularResolution(int)
     return -1;
 }
 
-void Radar::initSensorData(int size)
+//void Radar::initSensorData(int size)
+//{
+//    sensorArray.resize(size);
+////    sensorArray.at(2).setSensorValue(6.1);
+//}
+
+void Radar::genData(chrono::steady_clock::time_point progStartTime)
 {
-    Generator gen1;
-    sensorArray.resize(size);
-    sensorArray.at(2).setSensorValue(6.1);
+    Generator rangeGen;
+    using namespace std::chrono;
+    int i = 0;
+    while(i < 200)
+    {
+        steady_clock::time_point endTime = steady_clock::now();
+        duration<double> time_span = duration_cast<duration<double>>(endTime - progStartTime);
+        double timestamp = time_span.count();
+        double range = rangeGen.rangeGenerator(timestamp);
+
+        sensorArray.push_front(SensorData(range, timestamp)); // initialises Data with values, to front of array
+        if (sensorArray.size() > 150)
+            sensorArray.pop_back();
+        i++;
+    }
 }
 
 deque<SensorData> Radar::getSensorData()
 {
     return sensorArray;
+}
+
+void Radar::printData()
+{
+    for (deque<SensorData>::iterator it = sensorArray.begin(); it < sensorArray.end(); it++)
+        {
+            int currentLocation = it - sensorArray.begin();
+            cout << "Slot #" << currentLocation <<" Value: " << it->getSensorValue() << endl;
+        }
 }
 

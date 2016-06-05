@@ -27,7 +27,7 @@ public:
      */
     double normalGenerator(double mean, double stdDev, double max);
     double normalGenerator(double mean, double stdDev);
-    double rangeGenerator(std::chrono::steady_clock::time_point startTime);
+    double rangeGenerator(double timeDiff);
 
 
 private:

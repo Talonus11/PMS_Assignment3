@@ -6,6 +6,12 @@ SensorData::SensorData()
     timeStamp = 0;
 }
 
+SensorData::SensorData(double val, double time)
+{
+    sensorValue = val;
+    timeStamp = time;
+}
+
 double SensorData::getSensorValue()
 {
     return sensorValue;

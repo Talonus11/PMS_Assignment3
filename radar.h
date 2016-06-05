@@ -2,6 +2,7 @@
 #define RADAR_H
 #include <string>
 #include <deque>
+#include <chrono>
 
 #include "ranger.h"
 #include "sensordata.h"
@@ -127,6 +128,8 @@ public:
     int setAngularResolution(int);
     void initSensorData(int size);
     deque<SensorData> getSensorData();
+    void genData(chrono::steady_clock::time_point progStartTime);
+    void printData();
 
 private:
 
