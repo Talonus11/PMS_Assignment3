@@ -1,7 +1,10 @@
 #ifndef RADAR_H
 #define RADAR_H
 #include <string>
+#include <deque>
+
 #include "ranger.h"
+#include "sensordata.h"
 
 using namespace std;
 
@@ -122,6 +125,8 @@ public:
      * @return
      */
     int setAngularResolution(int);
+    void initSensorData(int size);
+    deque<SensorData> getSensorData();
 
 private:
 
@@ -135,10 +140,10 @@ private:
     double minDistance; /**< Minimum Distance */
     bool portSet; /**< Has the port been set? */
     int angRes; /**< Angular Resolution */
+    int dataRate;
     double scanValues[13]; /**< Array of scanned values */
     int sensorType = 0; /**< Identifies sensor as Radar */
-    int dataRate;
-
+    deque<SensorData> sensorArray;
 
     //Sensor Variable Options
     const int FOV1_ = 20;

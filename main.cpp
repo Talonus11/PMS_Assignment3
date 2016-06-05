@@ -391,6 +391,10 @@ int main( int argc, char ** argv )
 //    }
 
     vector<Ranger> rangerVector;
+    Radar radar1;
+    radar1.initSensorData(100);
+    cout << "sensorValue = " << radar1.getSensorData().at(2).getSensorValue() << endl;
+
 
 
 

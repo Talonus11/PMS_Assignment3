@@ -178,3 +178,16 @@ int Radar::setAngularResolution(int)
 {
     return -1;
 }
+
+void Radar::initSensorData(int size)
+{
+    Generator gen1;
+    sensorArray.resize(size);
+    sensorArray.at(2).setSensorValue(6.1);
+}
+
+deque<SensorData> Radar::getSensorData()
+{
+    return sensorArray;
+}
+

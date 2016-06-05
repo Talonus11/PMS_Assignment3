@@ -9,6 +9,7 @@ SET(CMAKE_DEPENDS_CHECK_CXX
   "/home/student/PMS_Assignment3/radar.cpp" "/home/student/PMS_Assignment3/build/CMakeFiles/Assignment2.dir/radar.cpp.o"
   "/home/student/PMS_Assignment3/ranger.cpp" "/home/student/PMS_Assignment3/build/CMakeFiles/Assignment2.dir/ranger.cpp.o"
   "/home/student/PMS_Assignment3/rangerfusion.cpp" "/home/student/PMS_Assignment3/build/CMakeFiles/Assignment2.dir/rangerfusion.cpp.o"
+  "/home/student/PMS_Assignment3/sensordata.cpp" "/home/student/PMS_Assignment3/build/CMakeFiles/Assignment2.dir/sensordata.cpp.o"
   "/home/student/PMS_Assignment3/sonar.cpp" "/home/student/PMS_Assignment3/build/CMakeFiles/Assignment2.dir/sonar.cpp.o"
   )
 SET(CMAKE_CXX_COMPILER_ID "GNU")
