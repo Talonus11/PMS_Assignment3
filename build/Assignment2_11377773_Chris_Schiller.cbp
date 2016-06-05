@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+   <FileVersion major="1" minor="6" />
+   <Project>
+      <Option title="Assignment2_11377773_Chris_Schiller" />
+      <Option makefile_is_custom="1" />
+      <Option compiler="gcc" />
+      <Option virtualFolders="CMake Files\;" />
+      <Build>
+      <Target title="all">
+         <Option working_dir="/home/student/PMS_Assignment3/build" />
+         <Option type="4" />
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/student/PMS_Assignment3/build/Makefile&quot;  VERBOSE=1 all" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/student/PMS_Assignment3/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/student/PMS_Assignment3/build/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/student/PMS_Assignment3/build/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="Assignment2">
+         <Option output="/home/student/PMS_Assignment3/build/Assignment2" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="/home/student/PMS_Assignment3/build" />
+         <Option object_output="./" />
+         <Option type="1" />
+         <Option compiler="gcc" />
+         <Compiler>
+            <Add directory="/usr/include" />
+            <Add directory="/usr/include/c++/4.8" />
+            <Add directory="/usr/include/c++/4.8/backward" />
+            <Add directory="/usr/include/i386-linux-gnu" />
+            <Add directory="/usr/include/i386-linux-gnu/c++/4.8" />
+            <Add directory="/usr/lib/gcc/i686-linux-gnu/4.8/include" />
+            <Add directory="/usr/lib/gcc/i686-linux-gnu/4.8/include-fixed" />
+            <Add directory="/usr/local/include" />
+         </Compiler>
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/student/PMS_Assignment3/build/Makefile&quot;  VERBOSE=1 Assignment2" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/student/PMS_Assignment3/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/student/PMS_Assignment3/build/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/student/PMS_Assignment3/build/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="Assignment2/fast">
+         <Option output="/home/student/PMS_Assignment3/build/Assignment2" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="/home/student/PMS_Assignment3/build" />
+         <Option object_output="./" />
+         <Option type="1" />
+         <Option compiler="gcc" />
+         <Compiler>
+            <Add directory="/usr/include" />
+            <Add directory="/usr/include/c++/4.8" />
+            <Add directory="/usr/include/c++/4.8/backward" />
+            <Add directory="/usr/include/i386-linux-gnu" />
+            <Add directory="/usr/include/i386-linux-gnu/c++/4.8" />
+            <Add directory="/usr/lib/gcc/i686-linux-gnu/4.8/include" />
+            <Add directory="/usr/lib/gcc/i686-linux-gnu/4.8/include-fixed" />
+            <Add directory="/usr/local/include" />
+         </Compiler>
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/student/PMS_Assignment3/build/Makefile&quot;  VERBOSE=1 Assignment2/fast" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/student/PMS_Assignment3/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/student/PMS_Assignment3/build/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/student/PMS_Assignment3/build/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="rebuild_cache">
+         <Option working_dir="/home/student/PMS_Assignment3/build" />
+         <Option type="4" />
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/student/PMS_Assignment3/build/Makefile&quot;  VERBOSE=1 rebuild_cache" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/student/PMS_Assignment3/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/student/PMS_Assignment3/build/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/student/PMS_Assignment3/build/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      </Build>
+      <Unit filename="/home/student/PMS_Assignment3/generator.cpp">
+      </Unit>
+      <Unit filename="/home/student/PMS_Assignment3/main.cpp">
+      </Unit>
+      <Unit filename="/home/student/PMS_Assignment3/radar.cpp">
+      </Unit>
+      <Unit filename="/home/student/PMS_Assignment3/ranger.cpp">
+      </Unit>
+      <Unit filename="/home/student/PMS_Assignment3/rangerfusion.cpp">
+      </Unit>
+      <Unit filename="/home/student/PMS_Assignment3/sonar.cpp">
+      </Unit>
+      <Unit filename="/home/student/PMS_Assignment3/generator.h">
+      </Unit>
+      <Unit filename="/home/student/PMS_Assignment3/radar.h">
+      </Unit>
+      <Unit filename="/home/student/PMS_Assignment3/ranger.h">
+      </Unit>
+      <Unit filename="/home/student/PMS_Assignment3/rangerfusion.h">
+      </Unit>
+      <Unit filename="/home/student/PMS_Assignment3/sonar.h">
+      </Unit>
+      <Unit filename="/home/student/PMS_Assignment3/CMakeLists.txt">
+          <Option virtualFolder="CMake Files\" />
+      </Unit>
+   </Project>
+</CodeBlocks_project_file>
