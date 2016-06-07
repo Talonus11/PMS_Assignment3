@@ -29,18 +29,8 @@ public:
      * @return string
      */
     string getModel();
-    /**
-     * @brief
-     * Returns the port directory of Radar
-     * @return string
-     */
-    string getPortDir();
-    /**
-     * @brief
-     * returns the MIN_DISTANCE of Radar
-     * @return double
-     */
-    double getMinDistance();
+
+
     /**
      * @brief
      * returns the MAX_DISTANCE of Radar
@@ -59,18 +49,8 @@ public:
      * @return int
      */
     int getFOV();
-    /**
-     * @brief
-     * returns the Port Nmber of Radar
-     * @return int
-     */
-    int getPortNumber();
-    /**
-     * @brief
-     * returns the Baud Rate of Radar
-     * @return int
-     */
-    int getBaud();
+
+
     /**
      * @brief
      * returns the generated array of normally distributed values, representing a distance scan performed by Radar
@@ -85,14 +65,7 @@ public:
     int getSensorType();
 
 // SET Methods
-    /**
-     * @brief
-     * sets the portNumber to the parameter taken in. As the Rangers are initialised in the order Laser > Radar > Sonar, this method also ensures that Radar's portNumber does not clash with Laser.
-     * Lastly, this method also returns a 1 if successful, or a 0 if unsuccessful.
-     * @param int
-     * @return int
-     */
-    int setPORT(int);
+
     /**
      * @brief
      * sets the FOV to the parameter taken in, as long as that value is sane. This method also returns a 1 if successful, or a 0 if unsuccessful.
@@ -100,13 +73,7 @@ public:
      * @return int
      */
     int setFOV(int);
-    /**
-     * @brief
-     * sets the Baud to the parameter taken in, as long as that value is sane. This method also returns a 1 if successful, or a 0 if unsuccessful.
-     * @param int
-     * @return int
-     */
-    int setBaud(int);
+
 
 //    /**
 //     * @brief
@@ -135,13 +102,8 @@ private:
 
     //Sensor Variables
     string model; /**< Model Name */
-    unsigned int baud; /**< Baud Rate */
-    unsigned int portNumber; /**< Number of the Port */
-    string portDir; /**< Directory of the Port */
     unsigned int FOV; /**< Field of View */
     double maxDistance; /**< Maximum Distance */
-    double minDistance; /**< Minimum Distance */
-    bool portSet; /**< Has the port been set? */
     int angRes; /**< Angular Resolution */
     int dataRate;
     //double scanValues[13]; /**< Array of scanned values */
@@ -152,14 +114,9 @@ private:
     const int FOV1_ = 20;
     const int FOV2_ = 40;
     const string MODEL_ = "RAD-001";
-    const double MIN_DISTANCE_ = 0.2;
     const double MAX_DISTANCE_ = 10.0;
-    const string PORT_STRING_ = "USB: /dev/ttyACM";
-    const int port0_ = 0;
-    const int port1_ = 1;
-    const int port2_ = 2;
-    const int baud0_ = 38400;
-    const int baud1_ = 115200;
+
+
     const int DATA_RATE_ = 10;
 
 };

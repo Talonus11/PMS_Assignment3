@@ -28,16 +28,16 @@ public:
     virtual string getModel(void) = 0;
     /**
      * @brief
-     *
+     * Returns the port directory of Radar
      * @return string
      */
-    virtual string getPortDir(void) = 0;
+    string getPortDir();
     /**
      * @brief
-     *
+     * returns the MIN_DISTANCE of Radar
      * @return double
      */
-    virtual double getMinDistance(void) = 0;
+    double getMinDistance();
     /**
      * @brief
      *
@@ -58,16 +58,16 @@ public:
     virtual int getFOV(void) = 0;
     /**
      * @brief
-     *
+     * returns the Port Nmber of Radar
      * @return int
      */
-    virtual int getPortNumber(void) = 0;
+    int getPortNumber();
     /**
      * @brief
-     *
+     * returns the Baud Rate of Radar
      * @return int
      */
-    virtual int getBaud(void) = 0;
+    int getBaud();
     /**
      * @brief
      *
@@ -93,15 +93,20 @@ public:
 //     */
 //    virtual void genArray(void) = 0;
     /**
-      *@brief
-      *
-      */
-    virtual int setPORT(int) = 0;
+     * @brief
+     * sets the portNumber to the parameter taken in. As the Rangers are initialised in the order Laser > Radar > Sonar, this method also ensures that Radar's portNumber does not clash with Laser.
+     * Lastly, this method also returns a 1 if successful, or a 0 if unsuccessful.
+     * @param int
+     * @return int
+     */
+    int setPORT(int);
     /**
      * @brief
-     * @return
+     * sets the Baud to the parameter taken in, as long as that value is sane. This method also returns a 1 if successful, or a 0 if unsuccessful.
+     * @param int
+     * @return int
      */
-    virtual int setBaud(int) = 0;
+    int setBaud(int);
     /**
      * @brief
      * @return
@@ -112,6 +117,26 @@ public:
      * @return
      */
 //    virtual int setAngularResolution(int) = 0;
+
+private:
+    //Sensor Variables
+    unsigned int baud; /**< Baud Rate */
+    unsigned int portNumber; /**< Number of the Port */
+    bool portSet; /**< Has the port been set? */
+    string portDir; /**< Directory of the Port */
+    double minDistance; /**< Minimum Distance */
+
+
+
+    //Sensor Variable Options
+    const int baud0_ = 38400;
+    const int baud1_ = 115200;
+    const int port0_ = 0;
+    const int port1_ = 1;
+    const int port2_ = 2;
+    const string PORT_STRING_ = "USB: /dev/ttyACM";
+    const double MIN_DISTANCE_ = 0.2;
+
 };
 
 #endif // RANGER_H
