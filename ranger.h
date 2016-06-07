@@ -73,12 +73,12 @@ public:
      *
      * @return double
      */
-    virtual double* getArray(void) = 0;
-    /**
-     * @brief
-     *
-     * @return
-     */
+//    virtual double* getArray(void) = 0;
+//    /**
+//     * @brief
+//     *
+//     * @return
+//     */
     virtual int getSensorType(void) = 0;
     /**
      * @brief
@@ -87,11 +87,11 @@ public:
      * @return bool
      */
     virtual bool disregard(double check) = 0;
-    /**
-     * @brief
-     *
-     */
-    virtual void genArray(void) = 0;
+//    /**
+//     * @brief
+//     *
+//     */
+//    virtual void genArray(void) = 0;
     /**
       *@brief
       *
@@ -111,7 +111,7 @@ public:
      * @brief
      * @return
      */
-    virtual int setAngularResolution(int) = 0;
+//    virtual int setAngularResolution(int) = 0;
 };
 
 #endif // RANGER_H

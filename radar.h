@@ -108,11 +108,11 @@ public:
      */
     int setBaud(int);
 
-    /**
-     * @brief
-     * generates an array of size 13, populating it with values taken from Generator's normal distribution generator. This is saved into the array scanValues in Radar.
-     */
-    void genArray();
+//    /**
+//     * @brief
+//     * generates an array of size 13, populating it with values taken from Generator's normal distribution generator. This is saved into the array scanValues in Radar.
+//     */
+//    void genArray();
     /**
      * @brief
      * compares the parameter taken in against the MIN_DISTANCE and MAX_DISTANCE properties of Radar. If the parameter "check" is equal to either, returns "true" to signify that the value should be disregarded. This is called in RangerFusion
@@ -120,13 +120,13 @@ public:
      * @return bool
      */
     bool disregard(double check);
-    /**
-     * @brief
-     * returns -1. This method does not serve a purpose for radar, as it does not have an angular resolution. The method exists to allow for agnostic code only.
-     * @return
-     */
-    int setAngularResolution(int);
-    void initSensorData(int size);
+//    /**
+//     * @brief
+//     * returns -1. This method does not serve a purpose for radar, as it does not have an angular resolution. The method exists to allow for agnostic code only.
+//     * @return
+//     */
+//    int setAngularResolution(int);
+//    void initSensorData(int size);
     deque<SensorData> getSensorData();
     void genData(chrono::steady_clock::time_point progStartTime);
     void printData();
@@ -144,7 +144,7 @@ private:
     bool portSet; /**< Has the port been set? */
     int angRes; /**< Angular Resolution */
     int dataRate;
-    double scanValues[13]; /**< Array of scanned values */
+    //double scanValues[13]; /**< Array of scanned values */
     int sensorType = 0; /**< Identifies sensor as Radar */
     deque<SensorData> sensorArray;
 

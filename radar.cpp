@@ -61,10 +61,10 @@ double Radar::getAngularResolution()
     return -1.0;
 }
 
-double* Radar::getArray()
-{
-    return scanValues;
-}
+//double* Radar::getArray()
+//{
+//    return scanValues;
+//}
 
 int Radar::getSensorType()
 {
@@ -130,42 +130,42 @@ int Radar::setBaud(int input)
 
 // Other Methods
 
-void Radar::genArray()
-{
-    Generator myGen;
-    double mean = 6.0;
-    double stdDev = 5.0;
-    if (FOV == FOV1_) //If FOV is 20, generate array of 13 values populating only array slot 6 with a generated value
-    {
-        for (int i = 0; i < 13; i++)
-        {
-            if (i == 6)
-            {
-                scanValues[i] = myGen.normalGenerator(mean,stdDev,maxDistance);
-            }
-            else
-            {
-                scanValues[i] = NULL;
-            }
-        }
-    }
-    if (FOV == FOV2_) //If FOV is 40, generate array of 13 values populating only array slots 5, 6 and 7 with the same value
-    {
-        for (int i = 0; i < 13; i++)
-        {
-            if (i == 7)
-            {
-                scanValues[5] = myGen.normalGenerator(mean,stdDev,maxDistance);
-                scanValues[6] = myGen.normalGenerator(mean,stdDev,maxDistance);
-                scanValues[7] = myGen.normalGenerator(mean,stdDev,maxDistance);
-            }
-            else
-            {
-                scanValues[i] = NULL;
-            }
-        }
-    }
-}
+//void Radar::genArray()
+//{
+//    Generator myGen;
+//    double mean = 6.0;
+//    double stdDev = 5.0;
+//    if (FOV == FOV1_) //If FOV is 20, generate array of 13 values populating only array slot 6 with a generated value
+//    {
+//        for (int i = 0; i < 13; i++)
+//        {
+//            if (i == 6)
+//            {
+//                scanValues[i] = myGen.normalGenerator(mean,stdDev,maxDistance);
+//            }
+//            else
+//            {
+//                scanValues[i] = NULL;
+//            }
+//        }
+//    }
+//    if (FOV == FOV2_) //If FOV is 40, generate array of 13 values populating only array slots 5, 6 and 7 with the same value
+//    {
+//        for (int i = 0; i < 13; i++)
+//        {
+//            if (i == 7)
+//            {
+//                scanValues[5] = myGen.normalGenerator(mean,stdDev,maxDistance);
+//                scanValues[6] = myGen.normalGenerator(mean,stdDev,maxDistance);
+//                scanValues[7] = myGen.normalGenerator(mean,stdDev,maxDistance);
+//            }
+//            else
+//            {
+//                scanValues[i] = NULL;
+//            }
+//        }
+//    }
+//}
 
 bool Radar::disregard(double check) // checks if the value is clipped, and therefore should be disregarded
 {
@@ -176,10 +176,10 @@ bool Radar::disregard(double check) // checks if the value is clipped, and there
     else return false;
 }
 
-int Radar::setAngularResolution(int)
-{
-    return -1;
-}
+//int Radar::setAngularResolution(int)
+//{
+//    return -1;
+//}
 
 //void Radar::initSensorData(int size)
 //{
