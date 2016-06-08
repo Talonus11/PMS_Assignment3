@@ -30,7 +30,12 @@ public:
      */
     string getModel();
 
-
+    /**
+     * @brief
+     * returns the MIN_DISTANCE of Radar
+     * @return double
+     */
+    double getMinDistance();
     /**
      * @brief
      * returns the MAX_DISTANCE of Radar
@@ -103,6 +108,7 @@ private:
     //Sensor Variables
     string model; /**< Model Name */
     unsigned int FOV; /**< Field of View */
+    double minDistance; /**< Minimum Distance */
     double maxDistance; /**< Maximum Distance */
     int angRes; /**< Angular Resolution */
     int dataRate;
@@ -115,6 +121,7 @@ private:
     const int FOV2_ = 40;
     const string MODEL_ = "RAD-001";
     const double MAX_DISTANCE_ = 10.0;
+    const double MIN_DISTANCE_ = 0.2;
 
 
     const int DATA_RATE_ = 10;

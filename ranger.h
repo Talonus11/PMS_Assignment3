@@ -37,7 +37,7 @@ public:
      * returns the MIN_DISTANCE of Radar
      * @return double
      */
-    double getMinDistance();
+    virtual double getMinDistance(void) = 0;
     /**
      * @brief
      *
@@ -124,7 +124,6 @@ private:
     unsigned int portNumber; /**< Number of the Port */
     bool portSet; /**< Has the port been set? */
     string portDir; /**< Directory of the Port */
-    double minDistance; /**< Minimum Distance */
 
 
 
@@ -135,7 +134,6 @@ private:
     const int port1_ = 1;
     const int port2_ = 2;
     const string PORT_STRING_ = "USB: /dev/ttyACM";
-    const double MIN_DISTANCE_ = 0.2;
 
 };
 

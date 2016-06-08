@@ -10,6 +10,7 @@ Radar::Radar()
     model = MODEL_;
     FOV = FOV1_;
     maxDistance = MAX_DISTANCE_;
+    minDistance = MIN_DISTANCE_;
     angRes = FOV;
     dataRate = DATA_RATE_;
 }
@@ -21,7 +22,10 @@ string Radar::getModel()
     return model;
 }
 
-
+double Radar::getMinDistance()
+{
+    return minDistance;
+}
 
 
 

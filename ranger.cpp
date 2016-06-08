@@ -6,7 +6,6 @@ Ranger::Ranger()
     portNumber = port0_;
     portSet = false;
     portDir = PORT_STRING_;
-    minDistance = MIN_DISTANCE_;
 
 }
 
@@ -22,10 +21,7 @@ string Ranger::getPortDir()
 {
     return portDir;
 }
-double Ranger::getMinDistance()
-{
-    return minDistance;
-}
+
 
 int Ranger::setBaud(int input)
 {
