@@ -41,7 +41,7 @@ double Generator::normalGenerator(double mean, double stdDev)
 
 // range generator
 
-double Generator::rangeGenerator(double timeDiff)
+double Generator::rangeGenerator(double timeDiff, double max)
 {
     using namespace std::chrono;
     double r;
@@ -52,6 +52,14 @@ double Generator::rangeGenerator(double timeDiff)
     double delta = normalGenerator(0,0.1);
 //    cout << "delta = " << delta << endl;
     r = (6 + (4*sin(omega*t)) + delta);
+    //clipping r to max and min
+    if (r < 0.2) // clips values below 0.2 to minDistance
+    {
+        r = 0.2;
+    }
+    if (r > max) // clips values above max to max, where max is passed in as an argument
+    {
+        r = max;
+    }
     return r;
-
 }

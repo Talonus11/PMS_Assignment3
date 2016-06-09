@@ -6,6 +6,21 @@ Ranger::Ranger()
 {
 }
 
+string Ranger::getModel()
+{
+    return model;
+}
+
+double Ranger::getMinDistance()
+{
+    return minDistance;
+}
+
+double Ranger::getMaxDistance()
+{
+    return maxDistance;
+}
+
 int Ranger::getBaud()
 {
     return baud;
@@ -111,7 +126,7 @@ void Ranger::genData(chrono::steady_clock::time_point progStartTime)
         steady_clock::time_point endTime = steady_clock::now();
         duration<double> time_span = duration_cast<duration<double>>(endTime - progStartTime);
         double timestamp = time_span.count();
-        double range = rangeGen.rangeGenerator(timestamp);
+        double range = rangeGen.rangeGenerator(timestamp, maxDistance);
 
         sensorDeque.push_front(SensorData(range, timestamp)); // initialises Data with values, to front of array
         if (sensorDeque.size() > 150)

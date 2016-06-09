@@ -43,10 +43,6 @@ sonar.h
 /home/student/PMS_Assignment3/sonar.h
 rangerfusion.h
 /home/student/PMS_Assignment3/rangerfusion.h
-windows.h
--
-unistd.h
--
 
 /home/student/PMS_Assignment3/radar.cpp
 radar.h

@@ -9,6 +9,7 @@ Radar::Radar()
 {
     model = MODEL_;
     baud = baud0_;
+    portDir = PORT_STRING_;
     FOV = FOV1_;
     maxDistance = MAX_DISTANCE_;
     minDistance = MIN_DISTANCE_;
