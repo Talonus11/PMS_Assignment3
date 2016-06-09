@@ -27,10 +27,11 @@ using namespace std;
 
 //  #include <windows.h>
 
-//  inline void delay( unsigned long ms )
-//    {
-//        Sleep( ms );
-//    }
+  inline void delay( unsigned long ms )
+    {
+        std::chrono::milliseconds duration(ms);
+        std::this_thread::sleep_for(duration);
+    }
 
 //#else  /* presume POSIX */
 
@@ -84,19 +85,18 @@ void portTaken(int input)
     }
 }
 
-void sensorSetup()
+void sensorSetup(Ranger &rdr1, Ranger &snr1, Ranger* rangerArray[2])
 {
     int uinput; // user input for ints
-    Radar radar1;
-    Sonar sonar1;
+
     cout << "Rangers created" << endl;
 
 
     Ranger* tempArray[2]; // stores one of each type of sensor in an array. Note that they can be reordered any way desired
-    tempArray[0] = &radar1;
-    tempArray[1] = &sonar1;
+    tempArray[0] = &rdr1;
+    tempArray[1] = &snr1;
 
-    Ranger* rangerArray[2];
+
     cout << "Ranger Array created" << endl;
 
 
@@ -358,8 +358,14 @@ void fusionRun()
 
 int main( int argc, char ** argv )
 {
-    sensorSetup();
-//    chrono::steady_clock::time_point programStartTime = chrono::steady_clock::now();
+    Radar radar1;
+    Sonar sonar1;
+    Ranger* rangerArray[2];
+//    sensorSetup(radar1, sonar1, rangerArray);
+
+//    cout << rangerArray[1]->getPortNumber() << endl;
+
+    chrono::steady_clock::time_point programStartTime = chrono::steady_clock::now();
 //    cout << "Program started" << endl;
 //    Generator gen;
 //    std::chrono::milliseconds duration(100);
@@ -373,7 +379,6 @@ int main( int argc, char ** argv )
 ////        double generated;
 ////        generated = gen.rangeGenerator(programStartTime);
 ////        cout << generated << endl;
-////        std::this_thread::sleep_for(duration);
 ////    }
 
 //    vector<Ranger> rangerVector;

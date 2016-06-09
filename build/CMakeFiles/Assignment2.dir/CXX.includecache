@@ -44,18 +44,6 @@ sonar.h
 rangerfusion.h
 /home/student/PMS_Assignment3/rangerfusion.h
 
-/home/student/PMS_Assignment3/radar.cpp
-radar.h
-/home/student/PMS_Assignment3/radar.h
-iostream
--
-cstdio
--
-generator.h
-/home/student/PMS_Assignment3/generator.h
-sensordata.h
-/home/student/PMS_Assignment3/sensordata.h
-
 /home/student/PMS_Assignment3/radar.h
 string
 -
