@@ -27,11 +27,16 @@ using namespace std;
 
 //  #include <windows.h>
 
-  inline void delay( unsigned long ms )
-    {
-        std::chrono::milliseconds duration(ms);
-        std::this_thread::sleep_for(duration);
-    }
+//inline void delay( unsigned long ms )
+//{
+//    std::chrono::milliseconds duration(ms);
+//    std::this_thread::sleep_for(duration);
+//}
+
+void th1Function(Ranger* rangerArray[2], chrono::steady_clock::time_point progStartTime)
+{
+    rangerArray[0]->genData(progStartTime);
+}
 
 //#else  /* presume POSIX */
 
@@ -358,14 +363,19 @@ void fusionRun()
 
 int main( int argc, char ** argv )
 {
+    chrono::steady_clock::time_point programStartTime = chrono::steady_clock::now();
     Radar radar1;
     Sonar sonar1;
     Ranger* rangerArray[2];
-//    sensorSetup(radar1, sonar1, rangerArray);
+    sensorSetup(radar1, sonar1, rangerArray);
+
+    std::thread thSensor1(th1Function, ref(rangerArray), ref(programStartTime));
+    thSensor1.join();
+
+
 
 //    cout << rangerArray[1]->getPortNumber() << endl;
 
-    chrono::steady_clock::time_point programStartTime = chrono::steady_clock::now();
 //    cout << "Program started" << endl;
 //    Generator gen;
 //    std::chrono::milliseconds duration(100);

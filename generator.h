@@ -27,7 +27,7 @@ public:
      */
     double normalGenerator(double mean, double stdDev, double max);
     double normalGenerator(double mean, double stdDev);
-    double rangeGenerator(double timeDiff, double max);
+    double rangeGenerator(double timeDiff, double max, double min);
 
 
 private:

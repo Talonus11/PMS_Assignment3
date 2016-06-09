@@ -41,7 +41,7 @@ double Generator::normalGenerator(double mean, double stdDev)
 
 // range generator
 
-double Generator::rangeGenerator(double timeDiff, double max)
+double Generator::rangeGenerator(double timeDiff, double max, double min)
 {
     using namespace std::chrono;
     double r;

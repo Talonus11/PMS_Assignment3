@@ -4,11 +4,18 @@
 #include <string>
 #include <deque>
 #include <chrono>
+#include <thread>
 
 #include "sensordata.h"
 
 
 using namespace std;
+
+inline void delay( unsigned long ms )
+{
+    std::chrono::milliseconds duration(ms);
+    std::this_thread::sleep_for(duration);
+}
 
 
 /**
@@ -104,7 +111,6 @@ public:
     void genData(chrono::steady_clock::time_point progStartTime);
     void printData();
 
-
 protected:
     //Sensor Variables
     unsigned int baud; /**< Baud Rate */
@@ -118,9 +124,7 @@ protected:
     deque<SensorData> sensorDeque;
     string sensorType;
     int dataRate;
-
-
-
+    int dataRate_ms;
 
     //Sensor Variable Options
     const int baud0_ = 38400;
@@ -129,6 +133,7 @@ protected:
     const int port1_ = 1;
     const int port2_ = 2;
     const string PORT_STRING_ = "USB: /dev/ttyACM";
+    const double MIN_DISTANCE_ = 0.2;
 
 };
 

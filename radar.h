@@ -32,9 +32,7 @@ private:
     const int FOV2_ = 40;
     const string MODEL_ = "RAD-001";
     const double MAX_DISTANCE_ = 10.0;
-    const double MIN_DISTANCE_ = 0.2;
     const int DATA_RATE_ = 10;
-
 };
 
 #endif // RADAR_H

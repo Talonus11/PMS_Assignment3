@@ -14,4 +14,5 @@ Sonar::Sonar()
     portSet = false;
     dataRate = DATA_RATE_;
     sensorType = "Sonar";
+    dataRate_ms = 1000/dataRate;
 }

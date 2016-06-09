@@ -16,6 +16,7 @@ Radar::Radar()
     portSet = false;
     dataRate = DATA_RATE_;
     sensorType = "Radar"; /**< Identifies sensor as Radar */
+    dataRate_ms = 1000/dataRate;
 }
 
 

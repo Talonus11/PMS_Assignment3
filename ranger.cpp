@@ -120,18 +120,18 @@ void Ranger::genData(chrono::steady_clock::time_point progStartTime)
 {
     Generator rangeGen;
     using namespace std::chrono;
-    int i = 0;
-    while(i < 200)
+    while(true)
     {
         steady_clock::time_point endTime = steady_clock::now();
         duration<double> time_span = duration_cast<duration<double>>(endTime - progStartTime);
         double timestamp = time_span.count();
-        double range = rangeGen.rangeGenerator(timestamp, maxDistance);
+        double range = rangeGen.rangeGenerator(timestamp, maxDistance, minDistance);
 
         sensorDeque.push_front(SensorData(range, timestamp)); // initialises Data with values, to front of array
         if (sensorDeque.size() > 150)
             sensorDeque.pop_back();
-        i++;
+        cout << "Val = " << sensorDeque.begin()->getSensorValue() << " Timestamp = " << sensorDeque.begin()->getTimeStamp() << endl;
+        delay(dataRate_ms);
     }
 }
 
