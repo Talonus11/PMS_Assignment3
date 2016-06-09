@@ -1,12 +1,9 @@
 #include "ranger.h"
+#include "generator.h"
+#include <iostream>
 
 Ranger::Ranger()
 {
-    baud = baud0_;
-    portNumber = port0_;
-    portSet = false;
-    portDir = PORT_STRING_;
-
 }
 
 int Ranger::getBaud()
@@ -20,6 +17,21 @@ int Ranger::getPortNumber()
 string Ranger::getPortDir()
 {
     return portDir;
+}
+
+int Ranger::getFOV()
+{
+    return FOV;
+}
+
+string Ranger::getSensorType()
+{
+    return sensorType;
+}
+
+deque<SensorData> Ranger::getSensorData()
+{
+    return sensorDeque;
 }
 
 
@@ -37,6 +49,7 @@ int Ranger::setBaud(int input)
     }
     else return 0;
 }
+
 int Ranger::setPORT(int input)
 {
 
@@ -60,3 +73,62 @@ int Ranger::setPORT(int input)
     }
     else return 0;
 }
+
+int Ranger::setFOV(int input)
+{
+    if (sensorType == "Radar")
+    {
+        if (input == 20)
+        {
+            FOV = 20;
+            return 1;
+        }
+        else if (input == 40)
+        {
+            FOV = 40;
+            return 1;
+        }
+    }
+    else return 0;
+}
+
+bool Ranger::disregard(double check) // checks if the value is clipped, and therefore should be disregarded
+{
+    if ((check == maxDistance) || (check == minDistance))
+    {
+        return true;
+    }
+    else return false;
+}
+
+void Ranger::genData(chrono::steady_clock::time_point progStartTime)
+{
+    Generator rangeGen;
+    using namespace std::chrono;
+    int i = 0;
+    while(i < 200)
+    {
+        steady_clock::time_point endTime = steady_clock::now();
+        duration<double> time_span = duration_cast<duration<double>>(endTime - progStartTime);
+        double timestamp = time_span.count();
+        double range = rangeGen.rangeGenerator(timestamp);
+
+        sensorDeque.push_front(SensorData(range, timestamp)); // initialises Data with values, to front of array
+        if (sensorDeque.size() > 150)
+            sensorDeque.pop_back();
+        i++;
+    }
+}
+
+void Ranger::printData()
+{
+    for (deque<SensorData>::iterator it = sensorDeque.begin(); it < sensorDeque.end(); it++)
+        {
+            int currentLocation = it - sensorDeque.begin();
+            cout << "Slot #" << currentLocation <<" Value: " << it->getSensorValue() << endl;
+        }
+}
+
+
+
+

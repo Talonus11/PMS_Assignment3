@@ -2,6 +2,11 @@
 #define RANGER_H
 
 #include <string>
+#include <deque>
+#include <chrono>
+
+#include "sensordata.h"
+
 
 using namespace std;
 
@@ -22,10 +27,10 @@ public:
 // GET Methods
     /**
      * @brief
-     *
+     * Returns the model of Radar
      * @return string
      */
-    virtual string getModel(void) = 0;
+    string getModel();
     /**
      * @brief
      * Returns the port directory of Radar
@@ -37,25 +42,19 @@ public:
      * returns the MIN_DISTANCE of Radar
      * @return double
      */
-    virtual double getMinDistance(void) = 0;
+    double getMinDistance();
     /**
      * @brief
-     *
+     * returns the MAX_DISTANCE of Radar
      * @return double
      */
-    virtual double getMaxDistance(void) = 0;
+    double getMaxDistance();
     /**
      * @brief
-     *
-     * @return double
-     */
-    virtual double getAngularResolution(void) = 0;
-    /**
-     * @brief
-     *
+     * returns the FOV of Radar
      * @return int
      */
-    virtual int getFOV(void) = 0;
+    int getFOV();
     /**
      * @brief
      * returns the Port Nmber of Radar
@@ -71,27 +70,17 @@ public:
     /**
      * @brief
      *
-     * @return double
+     * @return
      */
-//    virtual double* getArray(void) = 0;
-//    /**
-//     * @brief
-//     *
-//     * @return
-//     */
-    virtual int getSensorType(void) = 0;
+    string getSensorType();
+    deque<SensorData> getSensorData();
     /**
      * @brief
-     *
+     * compares the parameter taken in against the MIN_DISTANCE and MAX_DISTANCE properties of Radar. If the parameter "check" is equal to either, returns "true" to signify that the value should be disregarded. This is called in RangerFusion
      * @param check
      * @return bool
      */
-    virtual bool disregard(double check) = 0;
-//    /**
-//     * @brief
-//     *
-//     */
-//    virtual void genArray(void) = 0;
+    bool disregard(double check);
     /**
      * @brief
      * sets the portNumber to the parameter taken in. As the Rangers are initialised in the order Laser > Radar > Sonar, this method also ensures that Radar's portNumber does not clash with Laser.
@@ -111,19 +100,25 @@ public:
      * @brief
      * @return
      */
-    virtual int setFOV(int) = 0;
-    /**
-     * @brief
-     * @return
-     */
-//    virtual int setAngularResolution(int) = 0;
+    int setFOV(int);
+    void genData(chrono::steady_clock::time_point progStartTime);
+    void printData();
 
-private:
+
+protected:
     //Sensor Variables
     unsigned int baud; /**< Baud Rate */
     unsigned int portNumber; /**< Number of the Port */
     bool portSet; /**< Has the port been set? */
     string portDir; /**< Directory of the Port */
+    unsigned int FOV; /**< Field of View */
+    string model; /**< Model Name */
+    double minDistance; /**< Minimum Distance */
+    double maxDistance; /**< Maximum Distance */
+    deque<SensorData> sensorDeque;
+    string sensorType;
+    int dataRate;
+
 
 
 
