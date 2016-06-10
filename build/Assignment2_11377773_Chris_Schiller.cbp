@@ -74,6 +74,8 @@
          </MakeCommands>
       </Target>
       </Build>
+      <Unit filename="/home/student/PMS_Assignment3/datafusion.cpp">
+      </Unit>
       <Unit filename="/home/student/PMS_Assignment3/generator.cpp">
       </Unit>
       <Unit filename="/home/student/PMS_Assignment3/main.cpp">
@@ -87,6 +89,8 @@
       <Unit filename="/home/student/PMS_Assignment3/sensordata.cpp">
       </Unit>
       <Unit filename="/home/student/PMS_Assignment3/sonar.cpp">
+      </Unit>
+      <Unit filename="/home/student/PMS_Assignment3/datafusion.h">
       </Unit>
       <Unit filename="/home/student/PMS_Assignment3/generator.h">
       </Unit>

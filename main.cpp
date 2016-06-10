@@ -21,38 +21,21 @@
 
 using namespace std;
 
-//// This if statement determines if the program is being run in windows or linux, and sets "delay()" to refer to the correct platform method for delaying code
-
-//#if defined(__WIN32__) || defined(_WIN32) || defined(WIN32) || defined(__WINDOWS__) || defined(__TOS_WIN__)
-
-//  #include <windows.h>
-
-//inline void delay( unsigned long ms )
-//{
-//    std::chrono::milliseconds duration(ms);
-//    std::this_thread::sleep_for(duration);
-//}
-
-void th1Function(Ranger* rangerArray[2], chrono::steady_clock::time_point progStartTime)
+void th1Function(Ranger* rangerArray[2], chrono::steady_clock::time_point progStartTime, mutex &mxRadar, mutex &mxSonar)
 {
-    rangerArray[0]->genData(progStartTime);
+    if (rangerArray[0]->getSensorType() == "Radar")
+        rangerArray[0]->genDataR(progStartTime, mxRadar);
+    if (rangerArray[0]->getSensorType() == "Sonar")
+        rangerArray[0]->genDataS(progStartTime, mxSonar);
 }
 
-void th2Function(Ranger* rangerArray[2], chrono::steady_clock::time_point progStartTime)
+void th2Function(Ranger* rangerArray[2], chrono::steady_clock::time_point progStartTime, mutex &mxRadar, mutex &mxSonar)
 {
-    rangerArray[1]->genData(progStartTime);
+    if (rangerArray[1]->getSensorType() == "Radar")
+        rangerArray[1]->genDataR(progStartTime, mxRadar);
+    if (rangerArray[1]->getSensorType() == "Sonar")
+        rangerArray[1]->genDataS(progStartTime, mxSonar);
 }
-
-//#else  /* presume POSIX */
-
-//  #include <unistd.h>
-
-//  inline void delay( unsigned long ms )
-//    {
-//        usleep( ms * 1000 );
-//    }
-
-//#endif
 
 bool port0Taken = false;
 bool port1Taken = false;
@@ -105,10 +88,12 @@ int main( int argc, char ** argv )
     Radar radar1;
     Sonar sonar1;
     Ranger* rangerArray[2];
+    mutex mxRdr;
+    mutex mxSnr;
     sensorSetup(radar1, sonar1, rangerArray);
 
-    std::thread thSensor1(th1Function, ref(rangerArray), ref(programStartTime));
-    std::thread thSensor2(th2Function, ref(rangerArray), ref(programStartTime));
+    std::thread thSensor1(th1Function, ref(rangerArray), ref(programStartTime), ref(mxRdr), ref(mxSnr));
+    std::thread thSensor2(th2Function, ref(rangerArray), ref(programStartTime), ref(mxRdr), ref(mxSnr));
     thSensor1.join();
     thSensor2.join();
 

@@ -5,7 +5,7 @@ cmake_minimum_required (VERSION 2.6)
 project (Assignment2_11377773_Chris_Schiller)
 
 # CMake will now create the Makefiles that are needed to make an executable "main" that requires "main.cpp" and "lidar.cpp" 
-add_executable(Assignment2 main.cpp ranger.cpp rangerfusion.cpp radar.cpp sonar.cpp generator.cpp sensordata.cpp)
+add_executable(Assignment2 main.cpp ranger.cpp rangerfusion.cpp radar.cpp sonar.cpp generator.cpp sensordata.cpp datafusion.cpp)
 
 add_definitions(-std=c++11)
 

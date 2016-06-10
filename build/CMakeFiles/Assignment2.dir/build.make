@@ -213,6 +213,29 @@ CMakeFiles/Assignment2.dir/sensordata.cpp.o.provides: CMakeFiles/Assignment2.dir
 
 CMakeFiles/Assignment2.dir/sensordata.cpp.o.provides.build: CMakeFiles/Assignment2.dir/sensordata.cpp.o
 
+CMakeFiles/Assignment2.dir/datafusion.cpp.o: CMakeFiles/Assignment2.dir/flags.make
+CMakeFiles/Assignment2.dir/datafusion.cpp.o: ../datafusion.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/student/PMS_Assignment3/build/CMakeFiles $(CMAKE_PROGRESS_8)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Assignment2.dir/datafusion.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Assignment2.dir/datafusion.cpp.o -c /home/student/PMS_Assignment3/datafusion.cpp
+
+CMakeFiles/Assignment2.dir/datafusion.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Assignment2.dir/datafusion.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/student/PMS_Assignment3/datafusion.cpp > CMakeFiles/Assignment2.dir/datafusion.cpp.i
+
+CMakeFiles/Assignment2.dir/datafusion.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Assignment2.dir/datafusion.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/student/PMS_Assignment3/datafusion.cpp -o CMakeFiles/Assignment2.dir/datafusion.cpp.s
+
+CMakeFiles/Assignment2.dir/datafusion.cpp.o.requires:
+.PHONY : CMakeFiles/Assignment2.dir/datafusion.cpp.o.requires
+
+CMakeFiles/Assignment2.dir/datafusion.cpp.o.provides: CMakeFiles/Assignment2.dir/datafusion.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Assignment2.dir/build.make CMakeFiles/Assignment2.dir/datafusion.cpp.o.provides.build
+.PHONY : CMakeFiles/Assignment2.dir/datafusion.cpp.o.provides
+
+CMakeFiles/Assignment2.dir/datafusion.cpp.o.provides.build: CMakeFiles/Assignment2.dir/datafusion.cpp.o
+
 # Object files for target Assignment2
 Assignment2_OBJECTS = \
 "CMakeFiles/Assignment2.dir/main.cpp.o" \
@@ -221,7 +244,8 @@ Assignment2_OBJECTS = \
 "CMakeFiles/Assignment2.dir/radar.cpp.o" \
 "CMakeFiles/Assignment2.dir/sonar.cpp.o" \
 "CMakeFiles/Assignment2.dir/generator.cpp.o" \
-"CMakeFiles/Assignment2.dir/sensordata.cpp.o"
+"CMakeFiles/Assignment2.dir/sensordata.cpp.o" \
+"CMakeFiles/Assignment2.dir/datafusion.cpp.o"
 
 # External object files for target Assignment2
 Assignment2_EXTERNAL_OBJECTS =
@@ -233,6 +257,7 @@ Assignment2: CMakeFiles/Assignment2.dir/radar.cpp.o
 Assignment2: CMakeFiles/Assignment2.dir/sonar.cpp.o
 Assignment2: CMakeFiles/Assignment2.dir/generator.cpp.o
 Assignment2: CMakeFiles/Assignment2.dir/sensordata.cpp.o
+Assignment2: CMakeFiles/Assignment2.dir/datafusion.cpp.o
 Assignment2: CMakeFiles/Assignment2.dir/build.make
 Assignment2: CMakeFiles/Assignment2.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX executable Assignment2"
@@ -249,6 +274,7 @@ CMakeFiles/Assignment2.dir/requires: CMakeFiles/Assignment2.dir/radar.cpp.o.requ
 CMakeFiles/Assignment2.dir/requires: CMakeFiles/Assignment2.dir/sonar.cpp.o.requires
 CMakeFiles/Assignment2.dir/requires: CMakeFiles/Assignment2.dir/generator.cpp.o.requires
 CMakeFiles/Assignment2.dir/requires: CMakeFiles/Assignment2.dir/sensordata.cpp.o.requires
+CMakeFiles/Assignment2.dir/requires: CMakeFiles/Assignment2.dir/datafusion.cpp.o.requires
 .PHONY : CMakeFiles/Assignment2.dir/requires
 
 CMakeFiles/Assignment2.dir/clean:

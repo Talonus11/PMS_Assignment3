@@ -116,7 +116,7 @@ bool Ranger::disregard(double check) // checks if the value is clipped, and ther
     else return false;
 }
 
-void Ranger::genData(chrono::steady_clock::time_point progStartTime)
+void Ranger::genDataR(chrono::steady_clock::time_point progStartTime, mutex &mxRadar)
 {
     Generator rangeGen;
     using namespace std::chrono;
@@ -127,10 +127,33 @@ void Ranger::genData(chrono::steady_clock::time_point progStartTime)
         double timestamp = time_span.count();
         double range = rangeGen.rangeGenerator(timestamp, maxDistance, minDistance);
 
+        /********/ mxRadar.lock(); /********/
         sensorDeque.push_front(SensorData(range, timestamp)); // initialises Data with values, to front of array
         if (sensorDeque.size() > 150)
             sensorDeque.pop_back();
         cout << "Val = " << sensorDeque.begin()->getSensorValue() << " Timestamp = " << sensorDeque.begin()->getTimeStamp() << endl;
+        /********/ mxRadar.unlock(); /********/
+        delay(dataRate_ms);
+    }
+}
+
+void Ranger::genDataS(chrono::steady_clock::time_point progStartTime, mutex &mxSonar)
+{
+    Generator rangeGen;
+    using namespace std::chrono;
+    while(true)
+    {
+        steady_clock::time_point endTime = steady_clock::now();
+        duration<double> time_span = duration_cast<duration<double>>(endTime - progStartTime);
+        double timestamp = time_span.count();
+        double range = rangeGen.rangeGenerator(timestamp, maxDistance, minDistance);
+
+        /********/ mxSonar.lock(); /********/
+        sensorDeque.push_front(SensorData(range, timestamp)); // initialises Data with values, to front of array
+        if (sensorDeque.size() > 150)
+            sensorDeque.pop_back();
+        cout << "Val = " << sensorDeque.begin()->getSensorValue() << " Timestamp = " << sensorDeque.begin()->getTimeStamp() << endl;
+        /********/ mxSonar.unlock(); /********/
         delay(dataRate_ms);
     }
 }

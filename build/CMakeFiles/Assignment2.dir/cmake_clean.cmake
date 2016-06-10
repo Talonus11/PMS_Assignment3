@@ -6,6 +6,7 @@ FILE(REMOVE_RECURSE
   "CMakeFiles/Assignment2.dir/sonar.cpp.o"
   "CMakeFiles/Assignment2.dir/generator.cpp.o"
   "CMakeFiles/Assignment2.dir/sensordata.cpp.o"
+  "CMakeFiles/Assignment2.dir/datafusion.cpp.o"
   "Assignment2.pdb"
   "Assignment2"
 )

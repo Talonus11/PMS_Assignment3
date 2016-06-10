@@ -114,6 +114,30 @@ Assignment2/fast:
 	$(MAKE) -f CMakeFiles/Assignment2.dir/build.make CMakeFiles/Assignment2.dir/build
 .PHONY : Assignment2/fast
 
+datafusion.o: datafusion.cpp.o
+.PHONY : datafusion.o
+
+# target to build an object file
+datafusion.cpp.o:
+	$(MAKE) -f CMakeFiles/Assignment2.dir/build.make CMakeFiles/Assignment2.dir/datafusion.cpp.o
+.PHONY : datafusion.cpp.o
+
+datafusion.i: datafusion.cpp.i
+.PHONY : datafusion.i
+
+# target to preprocess a source file
+datafusion.cpp.i:
+	$(MAKE) -f CMakeFiles/Assignment2.dir/build.make CMakeFiles/Assignment2.dir/datafusion.cpp.i
+.PHONY : datafusion.cpp.i
+
+datafusion.s: datafusion.cpp.s
+.PHONY : datafusion.s
+
+# target to generate assembly for a file
+datafusion.cpp.s:
+	$(MAKE) -f CMakeFiles/Assignment2.dir/build.make CMakeFiles/Assignment2.dir/datafusion.cpp.s
+.PHONY : datafusion.cpp.s
+
 generator.o: generator.cpp.o
 .PHONY : generator.o
 
@@ -291,6 +315,9 @@ help:
 	@echo "... Assignment2"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... datafusion.o"
+	@echo "... datafusion.i"
+	@echo "... datafusion.s"
 	@echo "... generator.o"
 	@echo "... generator.i"
 	@echo "... generator.s"

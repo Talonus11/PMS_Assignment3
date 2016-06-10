@@ -64,7 +64,7 @@ public:
     int getFOV();
     /**
      * @brief
-     * returns the Port Nmber of Radar
+     * returns the Port Number of Radar
      * @return int
      */
     int getPortNumber();
@@ -108,7 +108,8 @@ public:
      * @return
      */
     int setFOV(int);
-    void genData(chrono::steady_clock::time_point progStartTime);
+    void genDataS(chrono::steady_clock::time_point progStartTime, mutex &mxRadar);
+    void genDataR(chrono::steady_clock::time_point progStartTime, mutex &mxSonar);
     void printData();
 
 protected:
