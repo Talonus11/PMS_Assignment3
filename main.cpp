@@ -106,31 +106,30 @@ void sensorSetup(Ranger &rdr1, Ranger &snr1, Ranger* rangerArray[2])
 
 
 //     Sort array so that:
-//     laser (sensorType = 0) is slot 0
-//     radar (sensorType = 1) is slot 1
-//     sonar (sensorType = 2) is slot 2
+//     radar (sensorType = 1) is slot 0
+//     sonar (sensorType = 2) is slot 1
 //     NB: This code still assumes that there is only one of each sensor type
 
     for (int i = 0; i < 2; i++)
     {
         if ((tempArray[i]->getSensorType()) == "Radar")
-            rangerArray[0] = tempArray[i];
-        if ((tempArray[i]->getSensorType()) == "Sonar")
             rangerArray[1] = tempArray[i];
+        if ((tempArray[i]->getSensorType()) == "Sonar")
+            rangerArray[0] = tempArray[i];
     }
 
     //////////////////////////////////////////////
-    /******* RADAR FIXED PARAMETERS PRINT *******/
+    /******* SENSOR 0 FIXED PARAMETERS PRINT *******/
     //////////////////////////////////////////////
 
-    cout << "*****RADAR*****" << endl;
+    cout << "*****" << rangerArray[0]->getSensorType() << "*****" << endl;
     cout << "Fixed Parameters" << endl;
     cout << "Model: " << rangerArray[0]->getModel() << endl;
     cout << "Scan range: " << rangerArray[0]->getMinDistance() << "m - " << rangerArray[0]->getMaxDistance() << "m" << endl << endl;
 
 
     //////////////////////////////////////////
-    /******* RADAR SETTING PARAMETERS *******/
+    /******* SENSOR 0 SETTING PARAMETERS *******/
     //////////////////////////////////////////
 
     cout << "Setting non-fixed parameters" << endl;
@@ -186,19 +185,21 @@ void sensorSetup(Ranger &rdr1, Ranger &snr1, Ranger* rangerArray[2])
 
 
     /**** FOV SET ****/
-
-    cout << "Default FOV: " << rangerArray[0]->getFOV() << endl;
-    cout << "Set FOV (20 or 40) degrees: ";
-    cin >> uinput;
-
-    if (rangerArray[0]->setFOV(uinput) == 0) // checks setPort method was successful (returns 1)
+    if (rangerArray[0]->getSensorType() == "Radar")
     {
-        cout << "Unable to set FOV - incorrect value entered. Reverting to default: " << rangerArray[0]->getFOV() << endl;
+        cout << "Default FOV: " << rangerArray[0]->getFOV() << endl;
+        cout << "Set FOV (20 or 40) degrees: ";
+        cin >> uinput;
+
+        if (rangerArray[0]->setFOV(uinput) == 0) // checks setPort method was successful (returns 1)
+        {
+            cout << "Unable to set FOV - incorrect value entered. Reverting to default: " << rangerArray[0]->getFOV() << endl;
+        }
+        cout << "FOV set to: " << rangerArray[0]->getFOV() << endl << endl;
     }
-    cout << "FOV set to: " << rangerArray[0]->getFOV() << endl << endl;
 
 
-    /**** RADAR ALL PARAMETERS PRINT ****/
+    /**** SENSOR 0 ALL PARAMETERS PRINT ****/
 
     cout << "----- FINAL SET VALUES -----" << endl;
     cout << "Model: " << rangerArray[0]->getModel() << endl;
@@ -211,17 +212,17 @@ void sensorSetup(Ranger &rdr1, Ranger &snr1, Ranger* rangerArray[2])
 
 
     //////////////////////////////////////////////
-    /******* SONAR FIXED PARAMETERS PRINT *******/
+    /******* SENSOR 1 FIXED PARAMETERS PRINT *******/
     //////////////////////////////////////////////
 
-    cout << "*****SONAR*****" << endl;
+    cout << "*****" << rangerArray[1]->getSensorType() << "*****" << endl;
     cout << "Fixed Parameters" << endl;
     cout << "Model: " << rangerArray[1]->getModel() << endl;
     cout << "Scan range: " << rangerArray[1]->getMinDistance() << "m - " << rangerArray[1]->getMaxDistance() << "m" << endl << endl;
 
 
     //////////////////////////////////////////
-    /******* SONAR SETTING PARAMETERS *******/
+    /******* SENSOR 1 SETTING PARAMETERS *******/
     //////////////////////////////////////////
 
     cout << "Setting non-fixed parameters" << endl;
@@ -233,9 +234,9 @@ void sensorSetup(Ranger &rdr1, Ranger &snr1, Ranger* rangerArray[2])
     cout << "Set Port Number (0,1,2) " << rangerArray[1]->getPortDir();
     cin >> uinput;
 
-    if (uinput != rangerArray[0]->getPortNumber()) // checks if the port entered clashes with the radar port
+    if (uinput != rangerArray[0]->getPortNumber()) // checks if the port entered clashes with the Sensor 0 port
     {
-        // Does not clash with radar
+        // Does not clash with Sensor 0
         if (rangerArray[1]->setPORT(uinput) == 0) // checks setPort method was successful (returns 1)
         {
             cout << "Unable to set port - incorrect value entered. Choosing next available port." << endl;
@@ -275,9 +276,23 @@ void sensorSetup(Ranger &rdr1, Ranger &snr1, Ranger* rangerArray[2])
     }
     cout << "Baud set to: " << rangerArray[1]->getBaud() << endl << endl;
 
-    /**** RADAR ALL PARAMETERS PRINT ****/
+    /**** FOV SET ****/
+    if (rangerArray[1]->getSensorType() == "Radar")
+    {
+        cout << "Default FOV: " << rangerArray[1]->getFOV() << endl;
+        cout << "Set FOV (20 or 40) degrees: ";
+        cin >> uinput;
 
-    cout << "----- RADAR FINAL SET VALUES -----" << endl;
+        if (rangerArray[1]->setFOV(uinput) == 0) // checks setPort method was successful (returns 1)
+        {
+            cout << "Unable to set FOV - incorrect value entered. Reverting to default: " << rangerArray[0]->getFOV() << endl;
+        }
+        cout << "FOV set to: " << rangerArray[1]->getFOV() << endl << endl;
+    }
+
+    /**** SENSOR 0 ALL PARAMETERS PRINT ****/
+
+    cout << "-----" << rangerArray[0]->getSensorType() << " FINAL SET VALUES -----" << endl;
     cout << "Model: " << rangerArray[0]->getModel() << endl;
     cout << "Baud: " << rangerArray[0]->getBaud() << endl;
     cout << "Port: " << rangerArray[0]->getPortDir() << rangerArray[0]->getPortNumber() << endl;
@@ -286,9 +301,9 @@ void sensorSetup(Ranger &rdr1, Ranger &snr1, Ranger* rangerArray[2])
     cout << "Max Distance: " << rangerArray[0]->getMaxDistance() << endl;
     cout << endl;
 
-    /**** SONAR ALL PARAMETERS PRINT ****/
+    /**** SENSOR 1 ALL PARAMETERS PRINT ****/
 
-    cout << "----- SONAR FINAL SET VALUES -----" << endl;
+    cout << "-----" << rangerArray[1]->getSensorType() << " FINAL SET VALUES -----" << endl;
     cout << "Model: " << rangerArray[1]->getModel() << endl;
     cout << "Baud: " << rangerArray[1]->getBaud() << endl;
     cout << "Port: " << rangerArray[1]->getPortDir() << rangerArray[1]->getPortNumber() << endl;
