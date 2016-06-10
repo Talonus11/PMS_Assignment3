@@ -97,26 +97,29 @@ void sensorSetup(Ranger &rdr1, Ranger &snr1, Ranger* rangerArray[2])
     cout << "Rangers created" << endl;
 
 
-    Ranger* tempArray[2]; // stores one of each type of sensor in an array. Note that they can be reordered any way desired
-    tempArray[0] = &rdr1;
-    tempArray[1] = &snr1;
+//    Ranger* tempArray[2]; // stores one of each type of sensor in an array. Note that they can be reordered any way desired
+//    tempArray[0] = &rdr1;
+//    tempArray[1] = &snr1;
 
 
-    cout << "Ranger Array created" << endl;
+//    cout << "Ranger Array created" << endl;
 
 
-//     Sort array so that:
-//     radar (sensorType = 1) is slot 0
-//     sonar (sensorType = 2) is slot 1
-//     NB: This code still assumes that there is only one of each sensor type
+////     Sort array so that:
+////     radar (sensorType = 1) is slot 0
+////     sonar (sensorType = 2) is slot 1
+////     NB: This code still assumes that there is only one of each sensor type
 
-    for (int i = 0; i < 2; i++)
-    {
-        if ((tempArray[i]->getSensorType()) == "Radar")
-            rangerArray[1] = tempArray[i];
-        if ((tempArray[i]->getSensorType()) == "Sonar")
-            rangerArray[0] = tempArray[i];
-    }
+//    for (int i = 0; i < 2; i++)
+//    {
+//        if ((tempArray[i]->getSensorType()) == "Radar")
+//            rangerArray[1] = tempArray[i];
+//        if ((tempArray[i]->getSensorType()) == "Sonar")
+//            rangerArray[0] = tempArray[i];
+//    }
+
+    rangerArray[0] = &rdr1;
+    rangerArray[1] = &snr1;
 
     //////////////////////////////////////////////
     /******* SENSOR 0 FIXED PARAMETERS PRINT *******/
