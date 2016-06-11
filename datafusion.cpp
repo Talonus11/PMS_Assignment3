@@ -5,7 +5,17 @@ DataFusion::DataFusion()
 {
 }
 
-void DataFusion::copyData(Ranger* rangerArray[2], mutex &mxRadar, mutex &mxSonar)
+void DataFusion::copyDataS(Ranger sonar, mutex &mxSonar)
+{
+
+}
+
+void DataFusion::copyDataR(Ranger radar, mutex &mxRadar)
+{
+
+}
+
+void DataFusion::run(Ranger* rangerArray[2], mutex &mxRadar, mutex &mxSonar)
 {
     while(true)
     {

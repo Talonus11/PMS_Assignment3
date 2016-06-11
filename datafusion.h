@@ -10,7 +10,9 @@ class DataFusion
 {
 public:
     DataFusion();
-    void copyData(Ranger* rangerArray[2], mutex &mxRadar, mutex &mxSonar);
+    void run(Ranger* rangerArray[2], mutex &mxRadar, mutex &mxSonar);
+    void copyDataS(Ranger sonar, mutex &mxSonar);
+    void copyDataR(Ranger radar, mutex &mxRadar);
     void extrapolate();
     void minFusion();
     void avgFusion();
@@ -21,6 +23,8 @@ private:
     std::deque<SensorData> outputDeque;
     std::deque<SensorData> sensor1Deque;
     std::deque<SensorData> sensor2Deque;
+    string sensor1Type;
+    string sensor2Type;
 };
 
 #endif // DATAFUSION_H
