@@ -150,11 +150,13 @@ void Ranger::genDataS(chrono::steady_clock::time_point progStartTime, mutex &mxS
         double timestamp = time_span.count();
         double range = rangeGen.rangeGenerator(timestamp, maxDistance, minDistance);
 
+        cout << "genDataS locking mxSonar" << endl;
         /********/ mxSonar.lock(); /********/
         sensorDeque.push_front(SensorData(range, timestamp)); // initialises Data with values, to front of array
         if (sensorDeque.size() > 150)
             sensorDeque.pop_back();
         //cout << "Val = " << sensorDeque.begin()->getSensorValue() << " Timestamp = " << sensorDeque.begin()->getTimeStamp() << endl;
+        cout << "genDataS unlocking mxSonar" << endl;
         /********/ mxSonar.unlock(); /********/
         delay(dataRate_ms);
     }

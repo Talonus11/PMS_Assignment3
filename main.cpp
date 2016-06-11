@@ -30,7 +30,7 @@ void th1Function(Ranger* rangerArray[2], chrono::steady_clock::time_point progSt
     }
     if (rangerArray[0]->getSensorType() == "Sonar")
     {
-        cout << "Thread 2 detects a Sonar. Starting genDataS" << endl;
+        cout << "Thread 1 detects a Sonar. Starting genDataS" << endl;
         rangerArray[0]->genDataS(progStartTime, mxSonar);
     }
 }
@@ -39,10 +39,12 @@ void th2Function(Ranger* rangerArray[2], chrono::steady_clock::time_point progSt
 {
     if (rangerArray[1]->getSensorType() == "Radar")
     {
+        cout << "Thread 2 detects a Radar. Starting genDataR" << endl;
         rangerArray[1]->genDataR(progStartTime, mxRadar);
     }
     if (rangerArray[1]->getSensorType() == "Sonar")
     {
+        cout << "Thread 2 detects a Sonar. Starting genDataS" << endl;
         rangerArray[1]->genDataS(progStartTime, mxSonar);
     }
 }
@@ -109,10 +111,10 @@ int main( int argc, char ** argv )
     sensorSetup(radar1, sonar1, rangerArray);
 
     std::thread thSensor1(th1Function, ref(rangerArray), ref(programStartTime), ref(mxRdr), ref(mxSnr));
-    //std::thread thSensor2(th2Function, ref(rangerArray), ref(programStartTime), ref(mxRdr), ref(mxSnr));
+    std::thread thSensor2(th2Function, ref(rangerArray), ref(programStartTime), ref(mxRdr), ref(mxSnr));
     std::thread thFuser(th3Function,ref(fuser_) ,ref(rangerArray), ref(mxRdr), ref(mxSnr));
     thSensor1.join();
-    //thSensor2.join();
+    thSensor2.join();
     thFuser.join();
 
 
