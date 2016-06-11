@@ -3,6 +3,7 @@
 
 #include <deque>
 #include <mutex>
+#include <iostream>
 #include "sensordata.h"
 #include "ranger.h"
 class DataFusion
@@ -14,6 +15,7 @@ public:
     void minFusion();
     void avgFusion();
     void maxFusion();
+    void printData(deque<SensorData>);
 
 private:
     std::deque<SensorData> outputDeque;

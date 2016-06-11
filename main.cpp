@@ -17,24 +17,39 @@
 #include "radar.h"
 #include "ranger.h"
 #include "sonar.h"
-#include "rangerfusion.h"
+#include "datafusion.h"
 
 using namespace std;
 
 void th1Function(Ranger* rangerArray[2], chrono::steady_clock::time_point progStartTime, mutex &mxRadar, mutex &mxSonar)
 {
     if (rangerArray[0]->getSensorType() == "Radar")
+    {
+        cout << "Thread 1 detects a Radar. Starting genDataR" << endl;
         rangerArray[0]->genDataR(progStartTime, mxRadar);
+    }
     if (rangerArray[0]->getSensorType() == "Sonar")
+    {
+        cout << "Thread 2 detects a Sonar. Starting genDataS" << endl;
         rangerArray[0]->genDataS(progStartTime, mxSonar);
+    }
 }
 
 void th2Function(Ranger* rangerArray[2], chrono::steady_clock::time_point progStartTime, mutex &mxRadar, mutex &mxSonar)
 {
     if (rangerArray[1]->getSensorType() == "Radar")
+    {
         rangerArray[1]->genDataR(progStartTime, mxRadar);
+    }
     if (rangerArray[1]->getSensorType() == "Sonar")
+    {
         rangerArray[1]->genDataS(progStartTime, mxSonar);
+    }
+}
+
+void th3Function(DataFusion &fuser, Ranger* rangerArray[2], mutex &mxRadar, mutex &mxSonar)
+{
+    fuser.copyData(rangerArray, mxRadar, mxSonar);
 }
 
 bool port0Taken = false;
@@ -90,12 +105,15 @@ int main( int argc, char ** argv )
     Ranger* rangerArray[2];
     mutex mxRdr;
     mutex mxSnr;
+    DataFusion fuser_;
     sensorSetup(radar1, sonar1, rangerArray);
 
     std::thread thSensor1(th1Function, ref(rangerArray), ref(programStartTime), ref(mxRdr), ref(mxSnr));
-    std::thread thSensor2(th2Function, ref(rangerArray), ref(programStartTime), ref(mxRdr), ref(mxSnr));
+    //std::thread thSensor2(th2Function, ref(rangerArray), ref(programStartTime), ref(mxRdr), ref(mxSnr));
+    std::thread thFuser(th3Function,ref(fuser_) ,ref(rangerArray), ref(mxRdr), ref(mxSnr));
     thSensor1.join();
-    thSensor2.join();
+    //thSensor2.join();
+    thFuser.join();
 
 
 

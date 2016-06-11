@@ -3,6 +3,7 @@
 
 #include <string>
 #include <deque>
+#include <vector>
 #include <chrono>
 #include <thread>
 #include <mutex>

@@ -3,15 +3,17 @@
 
 CMakeFiles/Assignment2.dir/datafusion.cpp.o: ../datafusion.cpp
 CMakeFiles/Assignment2.dir/datafusion.cpp.o: ../datafusion.h
+CMakeFiles/Assignment2.dir/datafusion.cpp.o: ../ranger.h
+CMakeFiles/Assignment2.dir/datafusion.cpp.o: ../sensordata.h
 
 CMakeFiles/Assignment2.dir/generator.cpp.o: ../generator.cpp
 CMakeFiles/Assignment2.dir/generator.cpp.o: ../generator.h
 
+CMakeFiles/Assignment2.dir/main.cpp.o: ../datafusion.h
 CMakeFiles/Assignment2.dir/main.cpp.o: ../generator.h
 CMakeFiles/Assignment2.dir/main.cpp.o: ../main.cpp
 CMakeFiles/Assignment2.dir/main.cpp.o: ../radar.h
 CMakeFiles/Assignment2.dir/main.cpp.o: ../ranger.h
-CMakeFiles/Assignment2.dir/main.cpp.o: ../rangerfusion.h
 CMakeFiles/Assignment2.dir/main.cpp.o: ../sensordata.h
 CMakeFiles/Assignment2.dir/main.cpp.o: ../sonar.h
 
