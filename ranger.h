@@ -109,8 +109,8 @@ public:
      * @return
      */
     int setFOV(int);
-    void genDataS(chrono::steady_clock::time_point progStartTime, mutex &mxRadar);
-    void genDataR(chrono::steady_clock::time_point progStartTime, mutex &mxSonar);
+    void genData1(chrono::steady_clock::time_point progStartTime, mutex &mx1);
+    void genData0(chrono::steady_clock::time_point progStartTime, mutex &mx0);
     void printData();
 
 protected:

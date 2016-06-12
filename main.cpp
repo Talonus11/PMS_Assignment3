@@ -21,19 +21,19 @@
 
 using namespace std;
 
-void thRadarFunc(Ranger radar, chrono::steady_clock::time_point progStartTime, mutex &mxRadar)
+void th1Func(Ranger* ranger0, chrono::steady_clock::time_point progStartTime, mutex &mx0)
 {
-    radar.genDataR(progStartTime, mxRadar);
+    ranger0->genData0(progStartTime, mx0);
 }
 
-void thSonarFunc(Ranger sonar, chrono::steady_clock::time_point progStartTime, mutex &mxSonar)
+void th2Func(Ranger* ranger1, chrono::steady_clock::time_point progStartTime, mutex &mx1)
 {
-    sonar.genDataS(progStartTime, mxSonar);
+    ranger1->genData1(progStartTime, mx1);
 }
 
-void thFusionFunc(DataFusion &fuser, Ranger* rangerArray[2], mutex &mxRadar, mutex &mxSonar)
+void thFusionFunc(DataFusion &fuser, Ranger* rangerArray[2], mutex &mx0, mutex &mx1)
 {
-    fuser.run(rangerArray, mxRadar, mxSonar);
+    fuser.run(rangerArray, mx0, mx1);
 }
 
 bool port0Taken = false;
@@ -87,36 +87,36 @@ int main( int argc, char ** argv )
     Radar radar1;
     Sonar sonar1;
     Ranger* rangerArray[2];
-    mutex mxRdr;
-    mutex mxSnr;
+    mutex mx0_;
+    mutex mx1_;
     DataFusion fuser_;
     sensorSetup(radar1, sonar1, rangerArray);
-    Ranger **radar; //placeholder for sorting which ranger to pass into threads
-    Ranger **sonar; //placeholder for sorting which ranger to pass into threads
+//    Ranger **radar; //placeholder for sorting which ranger to pass into threads
+//    Ranger **sonar; //placeholder for sorting which ranger to pass into threads
 
 
-    // identifying which type of ranger is in which slot, to pass right sensor into right thread
-    if (rangerArray[0]->getSensorType() == "Radar")
-    {
-        radar = &rangerArray[0];
-    }
-    if (rangerArray[0]->getSensorType() == "Sonar")
-    {
-        sonar = &rangerArray[0];
-    }
-    if (rangerArray[1]->getSensorType() == "Radar")
-    {
-        radar = &rangerArray[1];
-    }
-    if (rangerArray[1]->getSensorType() == "Sonar")
-    {
-        sonar = &rangerArray[1];
-    }
-    std::thread thSonar(thSonarFunc,ref(**sonar),ref(programStartTime),ref(mxSnr));
-    std::thread thRadar(thRadarFunc,ref(**radar),ref(programStartTime),ref(mxRdr));
-    std::thread thFusion(thFusionFunc, ref(fuser_) ,ref(rangerArray), ref(mxRdr), ref(mxSnr));
-    thRadar.join();
-    thSonar.join();
+//    // identifying which type of ranger is in which slot, to pass right sensor into right thread
+//    if (rangerArray[0]->getSensorType() == "Radar")
+//    {
+//        radar = &rangerArray[0];
+//    }
+//    if (rangerArray[0]->getSensorType() == "Sonar")
+//    {
+//        sonar = &rangerArray[0];
+//    }
+//    if (rangerArray[1]->getSensorType() == "Radar")
+//    {
+//        radar = &rangerArray[1];
+//    }
+//    if (rangerArray[1]->getSensorType() == "Sonar")
+//    {
+//        sonar = &rangerArray[1];
+//    }
+    std::thread th2(th2Func,ref(rangerArray[1]),ref(programStartTime),ref(mx1_));
+    std::thread th1(th1Func,ref(rangerArray[0]),ref(programStartTime),ref(mx0_));
+    std::thread thFusion(thFusionFunc, ref(fuser_) ,ref(rangerArray), ref(mx0_), ref(mx1_));
+    th1.join();
+    th2.join();
     thFusion.join();
 
 

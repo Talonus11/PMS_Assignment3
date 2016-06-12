@@ -15,54 +15,22 @@ void DataFusion::copyDataR(Ranger radar, mutex &mxRadar)
 
 }
 
-void DataFusion::run(Ranger* rangerArray[2], mutex &mxRadar, mutex &mxSonar)
+void DataFusion::run(Ranger* rangerArray[2], mutex &mx0, mutex &mx1)
 {
     while(true)
     {
         ////////////////////////////////////////// Sensor 1 Copy //////////////////////////////////////////
-        if (rangerArray[0]->getSensorType() == "Radar")
-        {
-            cout << "copyData locking mxRadar" << endl;
-            /********/ mxRadar.lock(); /********/
-        }
-        else if (rangerArray[0]->getSensorType() == "Sonar")
-        {
-            cout << "copyData locking mxSonar" << endl;
-            /********/ mxSonar.lock(); /********/
-        }
+        cout << "run() locking mx0" << endl;
+            /********/ mx0.lock(); /********/
         sensor1Deque = rangerArray[0]->getSensorData();
-        if (rangerArray[0]->getSensorType() == "Radar")
-        {
-            cout << "copyData unlocking mxRadar" << endl;
-            /********/ mxRadar.unlock(); /********/
-        }
-        else if (rangerArray[0]->getSensorType() == "Sonar")
-        {
-            cout << "copyData unlocking mxSonar" << endl;
-            /********/ mxSonar.unlock(); /********/
-        }
+        cout << "run() unlocking mx0" << endl;
+            /********/ mx0.unlock(); /********/
         ////////////////////////////////////////// Sensor 2 Copy //////////////////////////////////////////
-        if (rangerArray[1]->getSensorType() == "Radar")
-        {
-            cout << "copyData locking mxRadar" << endl;
-            /********/ mxRadar.lock(); /********/
-        }
-        else if (rangerArray[1]->getSensorType() == "Sonar")
-        {
-            cout << "copyData locking mxSonar" << endl;
-            /********/ mxSonar.lock(); /********/
-        }
+        cout << "run() locking mx1" << endl;
+            /********/ mx1.lock(); /********/
         sensor2Deque = rangerArray[1]->getSensorData();
-        if (rangerArray[1]->getSensorType() == "Radar")
-        {
-            cout << "copyData unlocking mxRadar" << endl;
-            /********/ mxRadar.unlock(); /********/
-        }
-        else if (rangerArray[1]->getSensorType() == "Sonar")
-        {
-            cout << "copyData unlocking mxSonar" << endl;
-            /********/ mxSonar.unlock(); /********/
-        }
+        cout << "run() unlocking mx1" << endl;
+            /********/ mx1.unlock(); /********/
         printData(sensor1Deque);
         printData(sensor2Deque);
         delay(500);

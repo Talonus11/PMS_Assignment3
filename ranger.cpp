@@ -116,7 +116,7 @@ bool Ranger::disregard(double check) // checks if the value is clipped, and ther
     else return false;
 }
 
-void Ranger::genDataR(chrono::steady_clock::time_point progStartTime, mutex &mxRadar)
+void Ranger::genData0(chrono::steady_clock::time_point progStartTime, mutex &mx0)
 {
     Generator rangeGen;
     using namespace std::chrono;
@@ -127,19 +127,19 @@ void Ranger::genDataR(chrono::steady_clock::time_point progStartTime, mutex &mxR
         double timestamp = time_span.count();
         double range = rangeGen.rangeGenerator(timestamp, maxDistance, minDistance);
 
-        cout << "genDataR locking mxRadar" << endl;
-        /********/ mxRadar.lock(); /********/
+        cout << "genData0 locking mx0" << endl;
+        /********/ mx0.lock(); /********/
         sensorDeque.push_front(SensorData(range, timestamp)); // initialises Data with values, to front of array
         if (sensorDeque.size() > 150)
             sensorDeque.pop_back();
         //cout << "Val = " << sensorDeque.begin()->getSensorValue() << " Timestamp = " << sensorDeque.begin()->getTimeStamp() << endl;
-        cout << "genDataR unlocking mxRadar" << endl;
-        /********/ mxRadar.unlock(); /********/
+        cout << "genData0 unlocking mx0" << endl;
+        /********/ mx0.unlock(); /********/
         delay(dataRate_ms);
     }
 }
 
-void Ranger::genDataS(chrono::steady_clock::time_point progStartTime, mutex &mxSonar)
+void Ranger::genData1(chrono::steady_clock::time_point progStartTime, mutex &mx1)
 {
     Generator rangeGen;
     using namespace std::chrono;
@@ -150,14 +150,14 @@ void Ranger::genDataS(chrono::steady_clock::time_point progStartTime, mutex &mxS
         double timestamp = time_span.count();
         double range = rangeGen.rangeGenerator(timestamp, maxDistance, minDistance);
 
-        cout << "genDataS locking mxSonar" << endl;
-        /********/ mxSonar.lock(); /********/
+        cout << "genData1 locking mx1" << endl;
+        /********/ mx1.lock(); /********/
         sensorDeque.push_front(SensorData(range, timestamp)); // initialises Data with values, to front of array
         if (sensorDeque.size() > 150)
             sensorDeque.pop_back();
         //cout << "Val = " << sensorDeque.begin()->getSensorValue() << " Timestamp = " << sensorDeque.begin()->getTimeStamp() << endl;
-        cout << "genDataS unlocking mxSonar" << endl;
-        /********/ mxSonar.unlock(); /********/
+        cout << "genData1 unlocking mx1" << endl;
+        /********/ mx1.unlock(); /********/
         delay(dataRate_ms);
     }
 }

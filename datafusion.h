@@ -10,7 +10,7 @@ class DataFusion
 {
 public:
     DataFusion();
-    void run(Ranger* rangerArray[2], mutex &mxRadar, mutex &mxSonar);
+    void run(Ranger* rangerArray[2], mutex &mx0, mutex &mx1);
     void copyDataS(Ranger sonar, mutex &mxSonar);
     void copyDataR(Ranger radar, mutex &mxRadar);
     void extrapolate();
