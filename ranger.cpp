@@ -127,13 +127,13 @@ void Ranger::genData0(chrono::steady_clock::time_point progStartTime, mutex &mx0
         double timestamp = time_span.count();
         double range = rangeGen.rangeGenerator(timestamp, maxDistance, minDistance);
 
-        cout << "genData0 locking mx0" << endl;
+//        cout << "genData0 locking mx0" << endl;
         /********/ mx0.lock(); /********/
         sensorDeque.push_front(SensorData(range, timestamp)); // initialises Data with values, to front of array
         if (sensorDeque.size() > 150)
             sensorDeque.pop_back();
         //cout << "Val = " << sensorDeque.begin()->getSensorValue() << " Timestamp = " << sensorDeque.begin()->getTimeStamp() << endl;
-        cout << "genData0 unlocking mx0" << endl;
+//        cout << "genData0 unlocking mx0" << endl;
         /********/ mx0.unlock(); /********/
         delay(dataRate_ms);
     }
@@ -150,13 +150,13 @@ void Ranger::genData1(chrono::steady_clock::time_point progStartTime, mutex &mx1
         double timestamp = time_span.count();
         double range = rangeGen.rangeGenerator(timestamp, maxDistance, minDistance);
 
-        cout << "genData1 locking mx1" << endl;
+//        cout << "genData1 locking mx1" << endl;
         /********/ mx1.lock(); /********/
         sensorDeque.push_front(SensorData(range, timestamp)); // initialises Data with values, to front of array
         if (sensorDeque.size() > 150)
             sensorDeque.pop_back();
         //cout << "Val = " << sensorDeque.begin()->getSensorValue() << " Timestamp = " << sensorDeque.begin()->getTimeStamp() << endl;
-        cout << "genData1 unlocking mx1" << endl;
+//        cout << "genData1 unlocking mx1" << endl;
         /********/ mx1.unlock(); /********/
         delay(dataRate_ms);
     }

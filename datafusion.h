@@ -10,10 +10,8 @@ class DataFusion
 {
 public:
     DataFusion();
-    void run(Ranger* rangerArray[2], mutex &mx0, mutex &mx1);
-    void copyDataS(Ranger sonar, mutex &mxSonar);
-    void copyDataR(Ranger radar, mutex &mxRadar);
-    void extrapolate();
+    void run(Ranger* rangerArray[2], mutex &mx0, mutex &mx1, chrono::steady_clock::time_point progStartTime, string fusion);
+    double extrapolate(deque<SensorData> sensorDeque, chrono::_V2::steady_clock::time_point progStartTime_, int i);
     void minFusion();
     void avgFusion();
     void maxFusion();
@@ -23,8 +21,10 @@ private:
     std::deque<SensorData> outputDeque;
     std::deque<SensorData> sensor1Deque;
     std::deque<SensorData> sensor2Deque;
-    string sensor1Type;
-    string sensor2Type;
+    double sensor1MaxDistance;
+    double sensor2MaxDistance;
+//    string sensor1Type;
+//    string sensor2Type;
 };
 
 #endif // DATAFUSION_H

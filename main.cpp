@@ -31,9 +31,9 @@ void th2Func(Ranger* ranger1, chrono::steady_clock::time_point progStartTime, mu
     ranger1->genData1(progStartTime, mx1);
 }
 
-void thFusionFunc(DataFusion &fuser, Ranger* rangerArray[2], mutex &mx0, mutex &mx1)
+void thFusionFunc(DataFusion &fuser, Ranger* rangerArray[2], mutex &mx0, mutex &mx1, chrono::steady_clock::time_point progStartTime, string fuseType_)
 {
-    fuser.run(rangerArray, mx0, mx1);
+    fuser.run(rangerArray, mx0, mx1, progStartTime, fuseType_);
 }
 
 bool port0Taken = false;
@@ -77,7 +77,7 @@ void portTaken(int input)
     }
 }
 
-void sensorSetup(Ranger &rdr1, Ranger &snr1, Ranger* rangerArray[2]);
+void sensorSetup(Ranger &rdr1, Ranger &snr1, Ranger* rangerArray[2], string &fuseType);
 
 void fusionRun();
 
@@ -90,61 +90,18 @@ int main( int argc, char ** argv )
     mutex mx0_;
     mutex mx1_;
     DataFusion fuser_;
-    sensorSetup(radar1, sonar1, rangerArray);
+    string fuseType;
+    sensorSetup(radar1, sonar1, rangerArray, fuseType);
 //    Ranger **radar; //placeholder for sorting which ranger to pass into threads
 //    Ranger **sonar; //placeholder for sorting which ranger to pass into threads
 
 
-//    // identifying which type of ranger is in which slot, to pass right sensor into right thread
-//    if (rangerArray[0]->getSensorType() == "Radar")
-//    {
-//        radar = &rangerArray[0];
-//    }
-//    if (rangerArray[0]->getSensorType() == "Sonar")
-//    {
-//        sonar = &rangerArray[0];
-//    }
-//    if (rangerArray[1]->getSensorType() == "Radar")
-//    {
-//        radar = &rangerArray[1];
-//    }
-//    if (rangerArray[1]->getSensorType() == "Sonar")
-//    {
-//        sonar = &rangerArray[1];
-//    }
     std::thread th2(th2Func,ref(rangerArray[1]),ref(programStartTime),ref(mx1_));
     std::thread th1(th1Func,ref(rangerArray[0]),ref(programStartTime),ref(mx0_));
-    std::thread thFusion(thFusionFunc, ref(fuser_) ,ref(rangerArray), ref(mx0_), ref(mx1_));
+    std::thread thFusion(thFusionFunc, ref(fuser_) ,ref(rangerArray), ref(mx0_), ref(mx1_), ref(programStartTime), fuseType);
     th1.join();
     th2.join();
     thFusion.join();
-
-
-
-//    cout << rangerArray[1]->getPortNumber() << endl;
-
-//    cout << "Program started" << endl;
-//    Generator gen;
-//    std::chrono::milliseconds duration(100);
-
-///*
-// * Code to generate range values for testing
-// */
-
-////    for (int i = 0; i < 10000; i++)
-////    {
-////        double generated;
-////        generated = gen.rangeGenerator(programStartTime);
-////        cout << generated << endl;
-////    }
-
-//    vector<Ranger> rangerVector;
-//    Radar radar1;
-////    radar1.initSensorData(100);
-//    radar1.genData(programStartTime);
-//    radar1.printData();
-
-
 
     return 0;
 }
@@ -212,7 +169,7 @@ void fusionRun()
 //    }
 }
 
-void sensorSetup(Ranger &rdr1, Ranger &snr1, Ranger *rangerArray[])
+void sensorSetup(Ranger &rdr1, Ranger &snr1, Ranger *rangerArray[], string &fuseType)
 {
     int uinput; // user input for ints
 
@@ -414,4 +371,13 @@ void sensorSetup(Ranger &rdr1, Ranger &snr1, Ranger *rangerArray[])
     cout << "Min Distance: " << rangerArray[1]->getMinDistance() << endl;
     cout << "Max Distance: " << rangerArray[1]->getMaxDistance() << endl;
     cout << endl;
+
+    cout << "What kind of fusion would you like to perform? Enter 1 for Min, 2 for Avg, 3 for Max: ";
+    cin >> uinput;
+    if (uinput == 1)
+        fuseType = "min";
+    if (uinput == 2)
+        fuseType = "avg";
+    if (uinput == 3)
+        fuseType = "max";
 }
