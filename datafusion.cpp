@@ -10,18 +10,18 @@ void DataFusion::run(Ranger* rangerArray[2], mutex &mx0, mutex &mx1, chrono::_V2
     while(true)
     {
         ////////////////////////////////////////// Sensor 1 Copy //////////////////////////////////////////
-        cout << "run() locking mx0" << endl;
+//        cout << "run() locking mx0" << endl;
             /********/ mx0.lock(); /********/
         sensor1Deque = rangerArray[0]->getSensorData();
         sensor1MaxDistance = rangerArray[0]->getMaxDistance();
-        cout << "run() unlocking mx0" << endl;
+//        cout << "run() unlocking mx0" << endl;
             /********/ mx0.unlock(); /********/
         ////////////////////////////////////////// Sensor 2 Copy //////////////////////////////////////////
-        cout << "run() locking mx1" << endl;
+//        cout << "run() locking mx1" << endl;
             /********/ mx1.lock(); /********/
         sensor2Deque = rangerArray[1]->getSensorData();
         sensor2MaxDistance = rangerArray[1]->getMaxDistance();
-        cout << "run() unlocking mx1" << endl;
+//        cout << "run() unlocking mx1" << endl;
             /********/ mx1.unlock(); /********/
         ////////////////////////////////////////// Extrapolate //////////////////////////////////////////
         cout << "Calling extrapolate()" << endl;
@@ -36,31 +36,82 @@ void DataFusion::run(Ranger* rangerArray[2], mutex &mx0, mutex &mx1, chrono::_V2
             cout << "Could not extrapolate sensor 2 data due to clipped values" << endl;
         }
         ////////////////////////////////////////// Fusion //////////////////////////////////////////
-        if (fusion == "min")
-            minFusion();
-        if (fusion == "avg")
-            avgFusion();
-        if (fusion == "max")
-            maxFusion();
+        cout << "eSen1 = " << eSen1 << ", eSen2 = " << eSen2 << endl;
+        if ((eSen1 == -1) && (eSen2 == -1))
+        {
+            cout << "Could not produce a reliable fused result due to clipped values" << endl;
+
+        }
+        else
+        {
+            if (fusion == "min")
+                cout << "Minimum value: " << minFusion(eSen1, eSen2) << endl;
+            if (fusion == "avg")
+                cout << "Average value: " << avgFusion(eSen1, eSen2) << endl;
+            if (fusion == "max")
+                cout << "Maximum value: " << maxFusion(eSen1, eSen2) << endl;
+        }
 //        printData(sensor1Deque);
 //        printData(sensor2Deque);
-        delay(500);
+        delay(200);
     }
 }
 
-void DataFusion::minFusion()
+double DataFusion::minFusion(double e1, double e2)
 {
-
+    if (e1 == -1)
+    {
+        cout << "Sensor 1 extrapolated value unreliable." << endl;
+        return e2;
+    }
+    else if (e2 == -1)
+    {
+        cout << "Sensor 2 extrapolated value unreliable." << endl;
+        return e1;
+    }
+    else if (e1 > e2)
+        return e2;
+    else if (e2 > e1)
+        return e1;
+    else return e1;
 }
 
-void DataFusion::avgFusion()
+double DataFusion::avgFusion(double e1, double e2)
 {
-
+    if (e1 == -1)
+    {
+        cout << "Sensor 1 extrapolated value unreliable." << endl;
+        return e2;
+    }
+    else if (e2 == -1)
+    {
+        cout << "Sensor 2 extrapolated value unreliable." << endl;
+        return e1;
+    }
+    else
+    {
+        double avg = (e1 + e2)/2;
+        return avg;
+    }
 }
 
-void DataFusion::maxFusion()
+double DataFusion::maxFusion(double e1, double e2)
 {
-
+    if (e1 == -1)
+    {
+        cout << "Sensor 1 extrapolated value unreliable." << endl;
+        return e2;
+    }
+    else if (e2 == -1)
+    {
+        cout << "Sensor 2 extrapolated value unreliable." << endl;
+        return e1;
+    }
+    if (e1 > e2)
+        return e1;
+    else if (e2 > e1)
+        return e2;
+    else return e1;
 }
 
 double DataFusion::extrapolate(deque<SensorData> sensorDeque, chrono::steady_clock::time_point progStartTime_, int i)

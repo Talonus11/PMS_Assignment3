@@ -12,9 +12,9 @@ public:
     DataFusion();
     void run(Ranger* rangerArray[2], mutex &mx0, mutex &mx1, chrono::steady_clock::time_point progStartTime, string fusion);
     double extrapolate(deque<SensorData> sensorDeque, chrono::_V2::steady_clock::time_point progStartTime_, int i);
-    void minFusion();
-    void avgFusion();
-    void maxFusion();
+    double minFusion(double e1, double e2);
+    double avgFusion(double e1, double e2);
+    double maxFusion(double e1, double e2);
     void printData(deque<SensorData>);
 
 private:
