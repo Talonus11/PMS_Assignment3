@@ -234,30 +234,6 @@ ranger.cpp.s:
 	$(MAKE) -f CMakeFiles/Assignment2.dir/build.make CMakeFiles/Assignment2.dir/ranger.cpp.s
 .PHONY : ranger.cpp.s
 
-rangerfusion.o: rangerfusion.cpp.o
-.PHONY : rangerfusion.o
-
-# target to build an object file
-rangerfusion.cpp.o:
-	$(MAKE) -f CMakeFiles/Assignment2.dir/build.make CMakeFiles/Assignment2.dir/rangerfusion.cpp.o
-.PHONY : rangerfusion.cpp.o
-
-rangerfusion.i: rangerfusion.cpp.i
-.PHONY : rangerfusion.i
-
-# target to preprocess a source file
-rangerfusion.cpp.i:
-	$(MAKE) -f CMakeFiles/Assignment2.dir/build.make CMakeFiles/Assignment2.dir/rangerfusion.cpp.i
-.PHONY : rangerfusion.cpp.i
-
-rangerfusion.s: rangerfusion.cpp.s
-.PHONY : rangerfusion.s
-
-# target to generate assembly for a file
-rangerfusion.cpp.s:
-	$(MAKE) -f CMakeFiles/Assignment2.dir/build.make CMakeFiles/Assignment2.dir/rangerfusion.cpp.s
-.PHONY : rangerfusion.cpp.s
-
 sensordata.o: sensordata.cpp.o
 .PHONY : sensordata.o
 
@@ -330,9 +306,6 @@ help:
 	@echo "... ranger.o"
 	@echo "... ranger.i"
 	@echo "... ranger.s"
-	@echo "... rangerfusion.o"
-	@echo "... rangerfusion.i"
-	@echo "... rangerfusion.s"
 	@echo "... sensordata.o"
 	@echo "... sensordata.i"
 	@echo "... sensordata.s"

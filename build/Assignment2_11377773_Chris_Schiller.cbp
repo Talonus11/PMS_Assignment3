@@ -84,8 +84,6 @@
       </Unit>
       <Unit filename="/home/student/PMS_Assignment3/ranger.cpp">
       </Unit>
-      <Unit filename="/home/student/PMS_Assignment3/rangerfusion.cpp">
-      </Unit>
       <Unit filename="/home/student/PMS_Assignment3/sensordata.cpp">
       </Unit>
       <Unit filename="/home/student/PMS_Assignment3/sonar.cpp">
@@ -97,8 +95,6 @@
       <Unit filename="/home/student/PMS_Assignment3/radar.h">
       </Unit>
       <Unit filename="/home/student/PMS_Assignment3/ranger.h">
-      </Unit>
-      <Unit filename="/home/student/PMS_Assignment3/rangerfusion.h">
       </Unit>
       <Unit filename="/home/student/PMS_Assignment3/sensordata.h">
       </Unit>

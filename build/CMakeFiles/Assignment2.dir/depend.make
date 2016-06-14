@@ -28,8 +28,6 @@ CMakeFiles/Assignment2.dir/ranger.cpp.o: ../ranger.cpp
 CMakeFiles/Assignment2.dir/ranger.cpp.o: ../ranger.h
 CMakeFiles/Assignment2.dir/ranger.cpp.o: ../sensordata.h
 
-CMakeFiles/Assignment2.dir/rangerfusion.cpp.o: ../rangerfusion.cpp
-
 CMakeFiles/Assignment2.dir/sensordata.cpp.o: ../sensordata.cpp
 CMakeFiles/Assignment2.dir/sensordata.cpp.o: ../sensordata.h
 

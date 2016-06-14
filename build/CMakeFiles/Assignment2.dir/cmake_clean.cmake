@@ -1,7 +1,6 @@
 FILE(REMOVE_RECURSE
   "CMakeFiles/Assignment2.dir/main.cpp.o"
   "CMakeFiles/Assignment2.dir/ranger.cpp.o"
-  "CMakeFiles/Assignment2.dir/rangerfusion.cpp.o"
   "CMakeFiles/Assignment2.dir/radar.cpp.o"
   "CMakeFiles/Assignment2.dir/sonar.cpp.o"
   "CMakeFiles/Assignment2.dir/generator.cpp.o"

@@ -4,13 +4,14 @@
 #include <deque>
 #include <mutex>
 #include <iostream>
+#include <condition_variable>
 #include "sensordata.h"
 #include "ranger.h"
 class DataFusion
 {
 public:
     DataFusion();
-    void run(Ranger* rangerArray[2], mutex &mx0, mutex &mx1, chrono::steady_clock::time_point progStartTime, string fusion);
+    void run(Ranger* rangerArray[2], mutex &mx0, mutex &mx1, chrono::steady_clock::time_point progStartTime, string fusion, condition_variable &cv, bool &newData);
     double extrapolate(deque<SensorData> sensorDeque, chrono::_V2::steady_clock::time_point progStartTime_, int i);
     double minFusion(double e1, double e2);
     double avgFusion(double e1, double e2);

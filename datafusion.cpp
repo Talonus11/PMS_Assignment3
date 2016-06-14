@@ -5,26 +5,34 @@ DataFusion::DataFusion()
 {
 }
 
-void DataFusion::run(Ranger* rangerArray[2], mutex &mx0, mutex &mx1, chrono::_V2::steady_clock::time_point progStartTime, string fusion)
+void DataFusion::run(Ranger* rangerArray[2], mutex &mx0, mutex &mx1, chrono::_V2::steady_clock::time_point progStartTime, string fusion, condition_variable &cv, bool &newData)
 {
     while(true)
     {
         ////////////////////////////////////////// Sensor 1 Copy //////////////////////////////////////////
-//        cout << "run() locking mx0" << endl;
-            /********/ mx0.lock(); /********/
-        sensor1Deque = rangerArray[0]->getSensorData();
-        sensor1MaxDistance = rangerArray[0]->getMaxDistance();
-//        cout << "run() unlocking mx0" << endl;
-            /********/ mx0.unlock(); /********/
-        ////////////////////////////////////////// Sensor 2 Copy //////////////////////////////////////////
+////        cout << "run() locking mx0" << endl;
+//            /********/ mx0.lock(); /********/
+////        cout << "run() unlocking mx0" << endl;
+//            /********/ mx0.unlock(); /********/
+//        ////////////////////////////////////////// Sensor 2 Copy //////////////////////////////////////////
 //        cout << "run() locking mx1" << endl;
             /********/ mx1.lock(); /********/
         sensor2Deque = rangerArray[1]->getSensorData();
         sensor2MaxDistance = rangerArray[1]->getMaxDistance();
 //        cout << "run() unlocking mx1" << endl;
             /********/ mx1.unlock(); /********/
+
+        unique_lock<mutex> lck(mx0);
+        while (!newData)
+        {
+            cv.wait(lck);
+        }
+        sensor1Deque = rangerArray[0]->getSensorData();
+        sensor1MaxDistance = rangerArray[0]->getMaxDistance();
+        newData = false;
+
         ////////////////////////////////////////// Extrapolate //////////////////////////////////////////
-        cout << "Calling extrapolate()" << endl;
+//        cout << "Calling extrapolate()" << endl;
         double eSen1 = extrapolate(sensor1Deque, progStartTime, 1);
         if (eSen1 == -1)
         {
@@ -51,9 +59,8 @@ void DataFusion::run(Ranger* rangerArray[2], mutex &mx0, mutex &mx1, chrono::_V2
             if (fusion == "max")
                 cout << "Maximum value: " << maxFusion(eSen1, eSen2) << endl;
         }
-//        printData(sensor1Deque);
-//        printData(sensor2Deque);
-        delay(200);
+//        delay(200);
+        cout << endl;
     }
 }
 
@@ -134,10 +141,10 @@ double DataFusion::extrapolate(deque<SensorData> sensorDeque, chrono::steady_clo
             chrono::steady_clock::time_point t = chrono::steady_clock::now();
             chrono::duration<double> time_span = chrono::duration_cast<chrono::duration<double>>(t - progStartTime_);
             tNow = time_span.count();
-            cout << "t0 = " << t0 << ", t1 = " << t1 << ", tNow = " << tNow << endl;
-            cout << "r0 = " << r0 << ", r1 = " << r1 << endl;
+//            cout << "t0 = " << t0 << ", t1 = " << t1 << ", tNow = " << tNow << endl;
+//            cout << "r0 = " << r0 << ", r1 = " << r1 << endl;
             eVal = r0 + ((r0 - r1)/(t0 - t1))*(tNow - t0);
-            cout << "eVal = " << eVal << endl;
+//            cout << "eVal = " << eVal << endl;
             return eVal;
         }
     }

@@ -12,6 +12,7 @@
 #include <array>
 #include <thread>
 #include <vector>
+#include <condition_variable>
 
 #include "generator.h"
 #include "radar.h"
@@ -21,19 +22,19 @@
 
 using namespace std;
 
-void th1Func(Ranger* ranger0, chrono::steady_clock::time_point progStartTime, mutex &mx0)
+void th1Func(Ranger* ranger0, chrono::steady_clock::time_point progStartTime, mutex &mx0, condition_variable &cv_, bool &newData_)
 {
-    ranger0->genData0(progStartTime, mx0);
+    ranger0->genData0(progStartTime, mx0, cv_, newData_);
 }
 
-void th2Func(Ranger* ranger1, chrono::steady_clock::time_point progStartTime, mutex &mx1)
+void th2Func(Ranger* ranger1, chrono::steady_clock::time_point progStartTime, mutex &mx1, condition_variable &cv_, bool &newData_)
 {
-    ranger1->genData1(progStartTime, mx1);
+    ranger1->genData1(progStartTime, mx1, cv_, newData_);
 }
 
-void thFusionFunc(DataFusion &fuser, Ranger* rangerArray[2], mutex &mx0, mutex &mx1, chrono::steady_clock::time_point progStartTime, string fuseType_)
+void thFusionFunc(DataFusion &fuser, Ranger* rangerArray[2], mutex &mx0, mutex &mx1, chrono::steady_clock::time_point progStartTime, string fuseType_, condition_variable &cv_, bool &newData_)
 {
-    fuser.run(rangerArray, mx0, mx1, progStartTime, fuseType_);
+    fuser.run(rangerArray, mx0, mx1, progStartTime, fuseType_, cv_, newData_);
 }
 
 bool port0Taken = false;
@@ -89,6 +90,8 @@ int main( int argc, char ** argv )
     Ranger* rangerArray[2];
     mutex mx0_;
     mutex mx1_;
+    condition_variable cv;
+    bool newData = false;
     DataFusion fuser_;
     string fuseType;
     sensorSetup(radar1, sonar1, rangerArray, fuseType);
@@ -96,9 +99,9 @@ int main( int argc, char ** argv )
 //    Ranger **sonar; //placeholder for sorting which ranger to pass into threads
 
 
-    std::thread th2(th2Func,ref(rangerArray[1]),ref(programStartTime),ref(mx1_));
-    std::thread th1(th1Func,ref(rangerArray[0]),ref(programStartTime),ref(mx0_));
-    std::thread thFusion(thFusionFunc, ref(fuser_) ,ref(rangerArray), ref(mx0_), ref(mx1_), ref(programStartTime), fuseType);
+    std::thread th2(th2Func,ref(rangerArray[1]),ref(programStartTime),ref(mx1_), ref(cv), ref(newData));
+    std::thread th1(th1Func,ref(rangerArray[0]),ref(programStartTime),ref(mx0_), ref(cv), ref(newData));
+    std::thread thFusion(thFusionFunc, ref(fuser_) ,ref(rangerArray), ref(mx0_), ref(mx1_), ref(programStartTime), fuseType, ref(cv), ref(newData));
     th1.join();
     th2.join();
     thFusion.join();

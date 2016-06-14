@@ -98,32 +98,9 @@ CMakeFiles/Assignment2.dir/ranger.cpp.o.provides: CMakeFiles/Assignment2.dir/ran
 
 CMakeFiles/Assignment2.dir/ranger.cpp.o.provides.build: CMakeFiles/Assignment2.dir/ranger.cpp.o
 
-CMakeFiles/Assignment2.dir/rangerfusion.cpp.o: CMakeFiles/Assignment2.dir/flags.make
-CMakeFiles/Assignment2.dir/rangerfusion.cpp.o: ../rangerfusion.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/student/PMS_Assignment3/build/CMakeFiles $(CMAKE_PROGRESS_3)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Assignment2.dir/rangerfusion.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Assignment2.dir/rangerfusion.cpp.o -c /home/student/PMS_Assignment3/rangerfusion.cpp
-
-CMakeFiles/Assignment2.dir/rangerfusion.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Assignment2.dir/rangerfusion.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/student/PMS_Assignment3/rangerfusion.cpp > CMakeFiles/Assignment2.dir/rangerfusion.cpp.i
-
-CMakeFiles/Assignment2.dir/rangerfusion.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Assignment2.dir/rangerfusion.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/student/PMS_Assignment3/rangerfusion.cpp -o CMakeFiles/Assignment2.dir/rangerfusion.cpp.s
-
-CMakeFiles/Assignment2.dir/rangerfusion.cpp.o.requires:
-.PHONY : CMakeFiles/Assignment2.dir/rangerfusion.cpp.o.requires
-
-CMakeFiles/Assignment2.dir/rangerfusion.cpp.o.provides: CMakeFiles/Assignment2.dir/rangerfusion.cpp.o.requires
-	$(MAKE) -f CMakeFiles/Assignment2.dir/build.make CMakeFiles/Assignment2.dir/rangerfusion.cpp.o.provides.build
-.PHONY : CMakeFiles/Assignment2.dir/rangerfusion.cpp.o.provides
-
-CMakeFiles/Assignment2.dir/rangerfusion.cpp.o.provides.build: CMakeFiles/Assignment2.dir/rangerfusion.cpp.o
-
 CMakeFiles/Assignment2.dir/radar.cpp.o: CMakeFiles/Assignment2.dir/flags.make
 CMakeFiles/Assignment2.dir/radar.cpp.o: ../radar.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/student/PMS_Assignment3/build/CMakeFiles $(CMAKE_PROGRESS_4)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/student/PMS_Assignment3/build/CMakeFiles $(CMAKE_PROGRESS_3)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Assignment2.dir/radar.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Assignment2.dir/radar.cpp.o -c /home/student/PMS_Assignment3/radar.cpp
 
@@ -146,7 +123,7 @@ CMakeFiles/Assignment2.dir/radar.cpp.o.provides.build: CMakeFiles/Assignment2.di
 
 CMakeFiles/Assignment2.dir/sonar.cpp.o: CMakeFiles/Assignment2.dir/flags.make
 CMakeFiles/Assignment2.dir/sonar.cpp.o: ../sonar.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/student/PMS_Assignment3/build/CMakeFiles $(CMAKE_PROGRESS_5)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/student/PMS_Assignment3/build/CMakeFiles $(CMAKE_PROGRESS_4)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Assignment2.dir/sonar.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Assignment2.dir/sonar.cpp.o -c /home/student/PMS_Assignment3/sonar.cpp
 
@@ -169,7 +146,7 @@ CMakeFiles/Assignment2.dir/sonar.cpp.o.provides.build: CMakeFiles/Assignment2.di
 
 CMakeFiles/Assignment2.dir/generator.cpp.o: CMakeFiles/Assignment2.dir/flags.make
 CMakeFiles/Assignment2.dir/generator.cpp.o: ../generator.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/student/PMS_Assignment3/build/CMakeFiles $(CMAKE_PROGRESS_6)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/student/PMS_Assignment3/build/CMakeFiles $(CMAKE_PROGRESS_5)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Assignment2.dir/generator.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Assignment2.dir/generator.cpp.o -c /home/student/PMS_Assignment3/generator.cpp
 
@@ -192,7 +169,7 @@ CMakeFiles/Assignment2.dir/generator.cpp.o.provides.build: CMakeFiles/Assignment
 
 CMakeFiles/Assignment2.dir/sensordata.cpp.o: CMakeFiles/Assignment2.dir/flags.make
 CMakeFiles/Assignment2.dir/sensordata.cpp.o: ../sensordata.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/student/PMS_Assignment3/build/CMakeFiles $(CMAKE_PROGRESS_7)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/student/PMS_Assignment3/build/CMakeFiles $(CMAKE_PROGRESS_6)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Assignment2.dir/sensordata.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Assignment2.dir/sensordata.cpp.o -c /home/student/PMS_Assignment3/sensordata.cpp
 
@@ -215,7 +192,7 @@ CMakeFiles/Assignment2.dir/sensordata.cpp.o.provides.build: CMakeFiles/Assignmen
 
 CMakeFiles/Assignment2.dir/datafusion.cpp.o: CMakeFiles/Assignment2.dir/flags.make
 CMakeFiles/Assignment2.dir/datafusion.cpp.o: ../datafusion.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/student/PMS_Assignment3/build/CMakeFiles $(CMAKE_PROGRESS_8)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/student/PMS_Assignment3/build/CMakeFiles $(CMAKE_PROGRESS_7)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Assignment2.dir/datafusion.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Assignment2.dir/datafusion.cpp.o -c /home/student/PMS_Assignment3/datafusion.cpp
 
@@ -240,7 +217,6 @@ CMakeFiles/Assignment2.dir/datafusion.cpp.o.provides.build: CMakeFiles/Assignmen
 Assignment2_OBJECTS = \
 "CMakeFiles/Assignment2.dir/main.cpp.o" \
 "CMakeFiles/Assignment2.dir/ranger.cpp.o" \
-"CMakeFiles/Assignment2.dir/rangerfusion.cpp.o" \
 "CMakeFiles/Assignment2.dir/radar.cpp.o" \
 "CMakeFiles/Assignment2.dir/sonar.cpp.o" \
 "CMakeFiles/Assignment2.dir/generator.cpp.o" \
@@ -252,7 +228,6 @@ Assignment2_EXTERNAL_OBJECTS =
 
 Assignment2: CMakeFiles/Assignment2.dir/main.cpp.o
 Assignment2: CMakeFiles/Assignment2.dir/ranger.cpp.o
-Assignment2: CMakeFiles/Assignment2.dir/rangerfusion.cpp.o
 Assignment2: CMakeFiles/Assignment2.dir/radar.cpp.o
 Assignment2: CMakeFiles/Assignment2.dir/sonar.cpp.o
 Assignment2: CMakeFiles/Assignment2.dir/generator.cpp.o
@@ -269,7 +244,6 @@ CMakeFiles/Assignment2.dir/build: Assignment2
 
 CMakeFiles/Assignment2.dir/requires: CMakeFiles/Assignment2.dir/main.cpp.o.requires
 CMakeFiles/Assignment2.dir/requires: CMakeFiles/Assignment2.dir/ranger.cpp.o.requires
-CMakeFiles/Assignment2.dir/requires: CMakeFiles/Assignment2.dir/rangerfusion.cpp.o.requires
 CMakeFiles/Assignment2.dir/requires: CMakeFiles/Assignment2.dir/radar.cpp.o.requires
 CMakeFiles/Assignment2.dir/requires: CMakeFiles/Assignment2.dir/sonar.cpp.o.requires
 CMakeFiles/Assignment2.dir/requires: CMakeFiles/Assignment2.dir/generator.cpp.o.requires
