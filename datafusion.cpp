@@ -5,34 +5,52 @@ DataFusion::DataFusion()
 {
 }
 
-void DataFusion::run(Ranger* rangerArray[2], mutex &mx0, mutex &mx1, chrono::_V2::steady_clock::time_point progStartTime, string fusion, condition_variable &cv, bool &newData)
+void DataFusion::run(Ranger* rangerArray[2], mutex &mx0, mutex &mx1, chrono::_V2::steady_clock::time_point progStartTime, string fusion, condition_variable &cv, condition_variable &cv2, int &newData1, int &newData2)
 {
     while(true)
     {
-        ////////////////////////////////////////// Sensor 1 Copy //////////////////////////////////////////
-////        cout << "run() locking mx0" << endl;
-//            /********/ mx0.lock(); /********/
-////        cout << "run() unlocking mx0" << endl;
-//            /********/ mx0.unlock(); /********/
-//        ////////////////////////////////////////// Sensor 2 Copy //////////////////////////////////////////
-//        cout << "run() locking mx1" << endl;
-            /********/ mx1.lock(); /********/
-        sensor2Deque = rangerArray[1]->getSensorData();
-        sensor2MaxDistance = rangerArray[1]->getMaxDistance();
-//        cout << "run() unlocking mx1" << endl;
-            /********/ mx1.unlock(); /********/
-
-        unique_lock<mutex> lck(mx0);
-        while (!newData)
+        cout << "newData1 = " << newData1 << endl;
+        cout << "newData2 = " << newData2 << endl;
+        if (newData1 == 2)
         {
-            cv.wait(lck);
+            /********/ mx0.lock(); /********/
+            sensor1Deque = rangerArray[0]->getSensorData();
+            sensor1MaxDistance = rangerArray[0]->getMaxDistance();
+            /********/ mx0.unlock(); /********/
         }
-        sensor1Deque = rangerArray[0]->getSensorData();
-        sensor1MaxDistance = rangerArray[0]->getMaxDistance();
-        newData = false;
+        else
+        {
+            unique_lock<mutex> lck(mx0);
+            if (newData1 == 1) // true if newData = 1
+            {
+                cv.wait(lck);
+            }
+            sensor1Deque = rangerArray[0]->getSensorData();
+            sensor1MaxDistance = rangerArray[0]->getMaxDistance();
+            newData1 = 0;
+        }
+
+        if (newData2 == 2)
+        {
+            /********/ mx1.lock(); /********/
+            sensor2Deque = rangerArray[1]->getSensorData();
+            sensor2MaxDistance = rangerArray[1]->getMaxDistance();
+            /********/ mx1.unlock(); /********/
+        }
+        else
+        {
+            unique_lock<mutex> lck2(mx1);
+            if (newData2 == 1) // true if newData2 = 1
+            {
+                cv2.wait(lck2);
+            }
+            sensor2Deque = rangerArray[1]->getSensorData();
+            sensor2MaxDistance = rangerArray[1]->getMaxDistance();
+            newData2 = 0;
+        }
 
         ////////////////////////////////////////// Extrapolate //////////////////////////////////////////
-//        cout << "Calling extrapolate()" << endl;
+        cout << "Calling extrapolate()" << endl;
         double eSen1 = extrapolate(sensor1Deque, progStartTime, 1);
         if (eSen1 == -1)
         {

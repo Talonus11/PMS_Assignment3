@@ -110,8 +110,8 @@ public:
      * @return
      */
     int setFOV(int);
-    void genData1(chrono::steady_clock::time_point progStartTime, mutex &mx1, condition_variable &cv, bool &newData);
-    void genData0(chrono::steady_clock::time_point progStartTime, mutex &mx0, condition_variable &cv, bool &newData);
+    void genData1(chrono::steady_clock::time_point progStartTime, mutex &mx1, condition_variable &cv, int &newData1);
+    void genData0(chrono::steady_clock::time_point progStartTime, mutex &mx0, condition_variable &cv, int &newData2);
     void printData();
 
 protected:

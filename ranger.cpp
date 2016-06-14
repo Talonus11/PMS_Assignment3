@@ -116,7 +116,7 @@ bool Ranger::disregard(double check) // checks if the value is clipped, and ther
     else return false;
 }
 
-void Ranger::genData0(chrono::steady_clock::time_point progStartTime, mutex &mx0, condition_variable &cv, bool &newData)
+void Ranger::genData0(chrono::steady_clock::time_point progStartTime, mutex &mx0, condition_variable &cv, int &newData1)
 {
     Generator rangeGen;
     using namespace std::chrono;
@@ -129,20 +129,25 @@ void Ranger::genData0(chrono::steady_clock::time_point progStartTime, mutex &mx0
 
 //        cout << "genData0 locking mx0" << endl;
         /********/ mx0.lock(); /********/
-        cout << "genData0 new value: " << range << ", timestamp = " << timestamp <<endl;
+        cout << "genData0 new value: " << range << ", timestamp = " << timestamp << endl;
         sensorDeque.push_front(SensorData(range, timestamp)); // initialises Data with values, to front of array
         if (sensorDeque.size() > 150)
             sensorDeque.pop_back();
         //cout << "Val = " << sensorDeque.begin()->getSensorValue() << " Timestamp = " << sensorDeque.begin()->getTimeStamp() << endl;
-//        cout << "genData0 unlocking mx0" << endl;
-        newData = true;
-        cv.notify_all();
+        cout << "genData0 unlocking mx0" << endl;
+        if (sensorType != "Radar")
+            newData1 = 2;
+        else
+        {
+            newData1 = 1;
+            cv.notify_all();
+        }
         /********/ mx0.unlock(); /********/
         delay(dataRate_ms);
     }
 }
 
-void Ranger::genData1(chrono::steady_clock::time_point progStartTime, mutex &mx1, condition_variable &cv, bool &newData)
+void Ranger::genData1(chrono::steady_clock::time_point progStartTime, mutex &mx1, condition_variable &cv2, int &newData2)
 {
     Generator rangeGen;
     using namespace std::chrono;
@@ -155,13 +160,19 @@ void Ranger::genData1(chrono::steady_clock::time_point progStartTime, mutex &mx1
 
 //        cout << "genData1 locking mx1" << endl;
         /********/ mx1.lock(); /********/
+        cout << "genData1 new value: " << range << ", timestamp = " << timestamp << endl;
         sensorDeque.push_front(SensorData(range, timestamp)); // initialises Data with values, to front of array
         if (sensorDeque.size() > 150)
             sensorDeque.pop_back();
         //cout << "Val = " << sensorDeque.begin()->getSensorValue() << " Timestamp = " << sensorDeque.begin()->getTimeStamp() << endl;
 //        cout << "genData1 unlocking mx1" << endl;
-//        newData = true;
-//        cv.notify_all();
+//        if (sensorType != "Radar")
+//            newData2 = 2;
+//        else
+//        {
+//            newData2 = 1;
+//            cv2.notify_all();
+//        }
         /********/ mx1.unlock(); /********/
         delay(dataRate_ms);
     }
